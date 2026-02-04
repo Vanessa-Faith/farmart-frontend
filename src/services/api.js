@@ -1,3 +1,13 @@
+ Tarus_b
+import axios from "axios";
+
+const API = axios.create({
+  baseURL: "http://localhost:5000/api",
+  withCredentials: true,
+});
+
+export default API;
+
 import axios from 'axios';
 
 const api = axios.create({
@@ -15,3 +25,4 @@ api.interceptors.request.use((config) => {
 });
 
 export default api;
+ dev
