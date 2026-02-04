@@ -1,3 +1,4 @@
+ Tarus_b
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import OrderHistory from "./pages/OrderHistory";
@@ -15,3 +16,19 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
+import './App.css'
+import AppRoutes from './routes/AppRoutes'
+import Navbar from './components/Navbar'
+
+function App(){
+  return (
+    <>
+      <Navbar />
+      <AppRoutes />
+    </>
+  )
+}
+
+export default App
+ dev
