@@ -4,6 +4,8 @@ import Animals from '../pages/Animals'
 import Farmers from '../pages/Farmers'
 import Auth from '../pages/Auth'
 
+import CartRaniel from '../pages/CartRaniel'
+
 export default function AppRoutes(){
   return (
     <Routes>
@@ -11,6 +13,8 @@ export default function AppRoutes(){
       <Route path="/animals" element={<Animals/>} />
       <Route path="/farmers" element={<Farmers/>} />
       <Route path="/auth" element={<Auth/>} />
+
+      <Route path="/cart-raniel" element={<CartRaniel/>} />
     </Routes>
   )
 }
