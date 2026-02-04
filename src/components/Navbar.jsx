@@ -1,12 +1,22 @@
 import { Link } from 'react-router-dom'
 
-export default function Navbar(){
+export default function Navbar() {
   return (
-    <nav style={{padding:10, borderBottom:'1px solid #eee', display:'flex', gap:12}}>
-      <Link to="/">Home</Link>
-      <Link to="/animals">Animals</Link>
-      <Link to="/farmers">Farmers</Link>
-      <Link to="/auth">Login</Link>
-    </nav>
+    <header className="navbar">
+      <div className="navbar__brand">
+        <Link to="/" aria-label="Farmart home">
+          FarMart
+        </Link>
+      </div>
+      <nav className="navbar__links" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#about">About us</a>
+        <a href="#contact">Contact us</a>
+        <a href="#services">Services</a>
+      </nav>
+      <div className="navbar__actions">
+        <Link className="btn btn--ghost" to="/auth">Login</Link>
+      </div>
+    </header>
   )
 }
