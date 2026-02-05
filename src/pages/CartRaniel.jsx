@@ -1,57 +1,30 @@
-import React, { useState } from 'react';
-import CartItemRaniel from '../components/CartItemRaniel'; // ← This import is required!
-
-const mockCartItems = [
-  {
-    id: 1,
-    title: 'Holstein Cow',
-    breed: 'Dairy',
-    age_months: 30,
-    price_per_unit: 165000,
-    quantity: 1,
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY8Tq28l1gLj0Dxrv1VYsL6CyXTK-_3yEXYA&s',
-  },
-  {
-    id: 2,
-    title: 'Boer Goat',
-    breed: 'Meat',
-    age_months: 14,
-    price_per_unit: 48000,
-    quantity: 2,
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZIAZvhLN5SjwMTD3uJqXsPSKTBXSpEfly7g&s',
-  },
-  {
-    id: 3,
-    title: 'Dorper Sheep',
-    breed: 'Meat',
-    age_months: 10,
-    price_per_unit: 35000,
-    quantity: 1,
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSub2VSmsZcC9nH93kRFOTZHYSZqgjmqipTw&s',
-  },
-];
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  removeItem,
+  updateQuantity,
+  clearCart,
+} from '../features/cart/cartSliceRaniel';
+import CartItemRaniel from '../components/CartItemRaniel';
 
 function CartRaniel() {
-  const [items, setItems] = useState(mockCartItems);
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.cartRaniel.items);
 
   const total = items.reduce((sum, item) => sum + item.price_per_unit * item.quantity, 0);
 
   const handleRemove = (id) => {
-    setItems(items.filter((item) => item.id !== id));
+    dispatch(removeItem(id));
   };
 
   const handleQuantityChange = (id, newQuantity) => {
     if (newQuantity < 1) return;
-    setItems(
-      items.map((item) =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
+    dispatch(updateQuantity({ id, quantity: newQuantity }));
   };
 
   const handleClearCart = () => {
     if (window.confirm("Are you sure you want to clear the entire cart?")) {
-      setItems([]);
+      dispatch(clearCart());
     }
   };
 
@@ -90,7 +63,6 @@ function CartRaniel() {
           </div>
         ) : (
           <>
-    
             <div className="space-y-6 mb-12">
               {items.map((item) => (
                 <CartItemRaniel
