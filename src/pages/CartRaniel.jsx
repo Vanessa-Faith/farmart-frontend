@@ -1,4 +1,3 @@
-// src/pages/CartRaniel.jsx
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -34,7 +33,6 @@ function CartRaniel() {
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
-        {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-center mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-0">
             Your Shopping Cart {items.length > 0 && `(${items.length} items)`}
@@ -67,7 +65,6 @@ function CartRaniel() {
           </div>
         ) : (
           <>
-            {/* Cart Items */}
             <div className="space-y-6 mb-12">
               {items.map((item) => (
                 <CartItemRaniel
@@ -79,7 +76,6 @@ function CartRaniel() {
               ))}
             </div>
 
-            {/* Summary & Checkout */}
             <div className="p-6 sm:p-8 bg-white rounded-2xl shadow-lg border border-gray-200">
               <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
                 <span className="text-xl sm:text-2xl font-bold text-gray-900">

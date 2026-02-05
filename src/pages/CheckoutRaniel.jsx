@@ -1,4 +1,3 @@
-// src/pages/CheckoutRaniel.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -6,7 +5,7 @@ import { kenyanCounties } from '../utils/countiesRaniel';
 
 function CheckoutRaniel() {
   const navigate = useNavigate();
-  const cartItems = useSelector((state) => state.cartRaniel.items); // from Redux
+  const cartItems = useSelector((state) => state.cartRaniel.items);
 
   const [phone, setPhone] = useState('');
   const [county, setCounty] = useState('');
@@ -20,7 +19,6 @@ function CheckoutRaniel() {
       alert('Please fill in phone number and county');
       return;
     }
-    // Simulate payment success
     setSuccess(true);
     alert(`Payment successful! Order placed for delivery to ${county}. Phone: ${phone}`);
   };
@@ -54,8 +52,6 @@ function CheckoutRaniel() {
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 text-center">
           Checkout
         </h1>
-
-        {/* Order Summary from Redux */}
         <div className="bg-white p-6 sm:p-8 rounded-2xl shadow border border-gray-200 mb-10">
           <h2 className="text-2xl font-semibold mb-6">Order Summary</h2>
 
@@ -89,8 +85,6 @@ function CheckoutRaniel() {
             <span className="text-green-700">KES {total.toLocaleString()}</span>
           </div>
         </div>
-
-        {/* Delivery Form */}
         <div className="bg-white p-6 sm:p-8 rounded-2xl shadow border border-gray-200">
           <h2 className="text-2xl font-semibold mb-6">Delivery Details</h2>
 
