@@ -1,42 +1,18 @@
+// src/pages/CheckoutRaniel.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { kenyanCounties } from '../utils/countiesRaniel';
 
-const mockCartItems = [
-  {
-    id: 1,
-    title: 'Holstein Cow',
-    breed: 'Dairy',
-    age_months: 30,
-    price_per_unit: 165000,
-    quantity: 1,
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY8Tq28l1gLj0Dxrv1VYsL6CyXTK-_3yEXYA&s',
-  },
-  {
-    id: 2,
-    title: 'Boer Goat',
-    breed: 'Meat',
-    age_months: 14,
-    price_per_unit: 48000,
-    quantity: 2,
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZIAZvhLN5SjwMTD3uJqXsPSKTBXSpEfly7g&s',
-  },
-  {
-    id: 3,
-    title: 'Dorper Sheep',
-    breed: 'Meat',
-    age_months: 10,
-    price_per_unit: 35000,
-    quantity: 1,
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSub2VSmsZcC9nH93kRFOTZHYSZqgjmqipTw&s',
-  },
-];
-
 function CheckoutRaniel() {
+  const navigate = useNavigate();
+  const cartItems = useSelector((state) => state.cartRaniel.items); // from Redux
+
   const [phone, setPhone] = useState('');
   const [county, setCounty] = useState('');
   const [success, setSuccess] = useState(false);
 
-  const total = mockCartItems.reduce((sum, item) => sum + item.price_per_unit * item.quantity, 0);
+  const total = cartItems.reduce((sum, item) => sum + item.price_per_unit * item.quantity, 0);
 
   const handlePay = (e) => {
     e.preventDefault();
@@ -44,7 +20,7 @@ function CheckoutRaniel() {
       alert('Please fill in phone number and county');
       return;
     }
-
+    // Simulate payment success
     setSuccess(true);
     alert(`Payment successful! Order placed for delivery to ${county}. Phone: ${phone}`);
   };
@@ -62,7 +38,7 @@ function CheckoutRaniel() {
             Contact: <strong>{phone}</strong>
           </p>
           <button
-            onClick={() => window.location.href = '/cart-raniel'}
+            onClick={() => navigate('/cart-raniel')}
             className="bg-green-600 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:bg-green-700 transition"
           >
             Back to Cart
@@ -79,29 +55,34 @@ function CheckoutRaniel() {
           Checkout
         </h1>
 
+        {/* Order Summary from Redux */}
         <div className="bg-white p-6 sm:p-8 rounded-2xl shadow border border-gray-200 mb-10">
           <h2 className="text-2xl font-semibold mb-6">Order Summary</h2>
 
-          <div className="space-y-4 mb-8">
-            {mockCartItems.map((item) => (
-              <div key={item.id} className="flex justify-between items-center border-b pb-4">
-                <div className="flex items-center">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-16 h-16 object-cover rounded mr-4"
-                  />
-                  <div>
-                    <p className="font-medium">{item.title} ({item.breed})</p>
-                    <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
+          {cartItems.length === 0 ? (
+            <p className="text-center text-gray-600">Your cart is empty</p>
+          ) : (
+            <div className="space-y-4 mb-8">
+              {cartItems.map((item) => (
+                <div key={item.id} className="flex justify-between items-center border-b pb-4">
+                  <div className="flex items-center">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-16 h-16 object-cover rounded mr-4"
+                    />
+                    <div>
+                      <p className="font-medium">{item.title} ({item.breed})</p>
+                      <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
+                    </div>
                   </div>
+                  <p className="font-semibold">
+                    KES {(item.price_per_unit * item.quantity).toLocaleString()}
+                  </p>
                 </div>
-                <p className="font-semibold">
-                  KES {(item.price_per_unit * item.quantity).toLocaleString()}
-                </p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           <div className="flex justify-between text-xl font-bold">
             <span>Total</span>
@@ -109,6 +90,7 @@ function CheckoutRaniel() {
           </div>
         </div>
 
+        {/* Delivery Form */}
         <div className="bg-white p-6 sm:p-8 rounded-2xl shadow border border-gray-200">
           <h2 className="text-2xl font-semibold mb-6">Delivery Details</h2>
 
@@ -157,7 +139,7 @@ function CheckoutRaniel() {
           </form>
 
           <button
-            onClick={() => window.location.href = '/cart-raniel'}
+            onClick={() => navigate('/cart-raniel')}
             className="mt-6 w-full bg-gray-200 text-gray-800 py-4 px-8 rounded-xl font-semibold text-lg hover:bg-gray-300 transition"
           >
             Back to Cart

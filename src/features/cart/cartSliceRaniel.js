@@ -32,7 +32,7 @@ const initialCartItems = [
 
 const initialState = {
   items: initialCartItems,
-  status: 'idle', 
+  status: 'idle',
   error: null,
 };
 
@@ -40,23 +40,17 @@ const cartSliceRaniel = createSlice({
   name: 'cartRaniel',
   initialState,
   reducers: {
-
     addItem: (state, action) => {
-      const existingItem = state.items.find(item => item.id === action.payload.id);
-      if (existingItem) {
-        existingItem.quantity += action.payload.quantity || 1;
+      const existing = state.items.find(item => item.id === action.payload.id);
+      if (existing) {
+        existing.quantity += action.payload.quantity || 1;
       } else {
-        state.items.push({
-          ...action.payload,
-          quantity: action.payload.quantity || 1,
-        });
+        state.items.push({ ...action.payload, quantity: action.payload.quantity || 1 });
       }
     },
-
     removeItem: (state, action) => {
       state.items = state.items.filter(item => item.id !== action.payload);
     },
-
     updateQuantity: (state, action) => {
       const { id, quantity } = action.payload;
       const item = state.items.find(item => item.id === id);
@@ -64,7 +58,6 @@ const cartSliceRaniel = createSlice({
         item.quantity = quantity;
       }
     },
-
     clearCart: (state) => {
       state.items = [];
     },
@@ -72,5 +65,4 @@ const cartSliceRaniel = createSlice({
 });
 
 export const { addItem, removeItem, updateQuantity, clearCart } = cartSliceRaniel.actions;
-
 export default cartSliceRaniel.reducer;
