@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// Mock cart items (you can keep or change images/animals as needed)
 const mockCartItems = [
   {
     id: 1,
@@ -58,16 +57,16 @@ function CartRaniel() {
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
-        {/* Header with cart count and clear button */}
+    
         <div className="flex flex-col sm:flex-row justify-between items-center mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
-            Your Shopping Cart {items.length > 0 && `(${items.length})`}
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-0">
+            Your Shopping Cart {items.length > 0 && `(${items.length} items)`}
           </h1>
 
           {items.length > 0 && (
             <button
               onClick={handleClearCart}
-              className="mt-4 sm:mt-0 text-red-600 hover:text-red-800 font-medium text-lg"
+              className="text-red-600 hover:text-red-800 font-medium text-lg underline"
             >
               Clear Cart
             </button>
@@ -91,14 +90,13 @@ function CartRaniel() {
           </div>
         ) : (
           <>
-            {/* Cart Items List */}
+            
             <div className="space-y-6 mb-12">
               {items.map((item) => (
                 <div
                   key={item.id}
                   className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-white p-5 sm:p-6 rounded-xl shadow border border-gray-200"
                 >
-                  {/* Image + Details */}
                   <div className="flex items-center flex-1 mb-4 sm:mb-0">
                     <img
                       src={item.image}
@@ -118,12 +116,11 @@ function CartRaniel() {
                     </div>
                   </div>
 
-                  {/* Quantity + Subtotal + Remove */}
                   <div className="w-full sm:w-auto text-right">
                     <div className="flex items-center justify-end mb-4">
                       <button
                         onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                        className="px-4 py-2 bg-gray-200 rounded-l-lg hover:bg-gray-300 disabled:opacity-50 transition"
+                        className="px-4 py-2 bg-gray-200 rounded-l hover:bg-gray-300 disabled:opacity-50 transition"
                         disabled={item.quantity <= 1}
                       >
                         -
@@ -133,7 +130,7 @@ function CartRaniel() {
                       </span>
                       <button
                         onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                        className="px-4 py-2 bg-gray-200 rounded-r-lg hover:bg-gray-300 transition"
+                        className="px-4 py-2 bg-gray-200 rounded-r hover:bg-gray-300 transition"
                       >
                         +
                       </button>
@@ -154,7 +151,6 @@ function CartRaniel() {
               ))}
             </div>
 
-            {/* Cart Summary & Checkout */}
             <div className="p-6 sm:p-8 bg-white rounded-2xl shadow-lg border border-gray-200">
               <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
                 <span className="text-xl sm:text-2xl font-bold text-gray-900">
@@ -166,7 +162,7 @@ function CartRaniel() {
               </div>
 
               <button
-                onClick={() => alert('Going to checkout... (next step coming soon)')}
+                onClick={() => alert('Proceeding to checkout... (next step coming soon)')}
                 className="w-full bg-green-600 text-white py-4 px-10 rounded-xl font-semibold text-lg hover:bg-green-700 transition shadow-md"
               >
                 Proceed to Checkout
