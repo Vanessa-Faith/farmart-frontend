@@ -160,6 +160,11 @@
   gap: 8px;
 }
 
+.navbar__user {
+  font-size: 0.9rem;
+  color: #a7f3d0;
+}
+
 @media (max-width: 900px) {
   .navbar {
     padding: 16px 24px;
