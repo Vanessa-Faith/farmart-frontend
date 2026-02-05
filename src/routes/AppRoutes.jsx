@@ -5,6 +5,7 @@ import Farmers from '../pages/Farmers'
 import Auth from '../pages/Auth'
 
 import CartRaniel from '../pages/CartRaniel'
+import CheckoutRaniel from '../pages/CheckoutRaniel'
 
 export default function AppRoutes(){
   return (
@@ -15,6 +16,7 @@ export default function AppRoutes(){
       <Route path="/auth" element={<Auth/>} />
 
       <Route path="/cart-raniel" element={<CartRaniel/>} />
+      <Route path="/checkout-raniel" element={<CheckoutRaniel/>} />
     </Routes>
   )
 }
