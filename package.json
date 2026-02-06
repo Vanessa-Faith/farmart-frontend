@@ -1,9 +1,5 @@
 {
- Tarus_b
-  "name": "frontend",
-
   "name": "farmart-frontend",
-dev
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,13 +10,8 @@ dev
     "preview": "vite preview"
   },
   "dependencies": {
- Tarus_b
-    "@reduxjs/toolkit": "^2.5.0",
-    "axios": "^1.7.9",
-
     "@reduxjs/toolkit": "^2.11.2",
     "axios": "^1.13.3",
- dev
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",

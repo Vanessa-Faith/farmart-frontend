@@ -1,23 +1,14 @@
- Tarus_b
-import { configureStore } from "@reduxjs/toolkit";
-import ordersReducer from "../features/orders/ordersSlice";
-
-export const store = configureStore({
-  reducer: {
-    orders: ordersReducer,
-  },
-});
-
-import { configureStore } from '@reduxjs/toolkit';
-import animalsReducer from '../features/animals/animalsSlice';
-import authReducer from '../features/auth/authSlice';
+import { configureStore } from '@reduxjs/toolkit'
+import animalsReducer from '../features/animals/animalsSlice'
+import authReducer from '../features/auth/authSlice'
+import ordersReducer from '../features/orders/ordersSlice'
 
 const store = configureStore({
   reducer: {
     animals: animalsReducer,
     auth: authReducer,
+    orders: ordersReducer,
   },
-});
+})
 
-export default store;
- dev
+export default store

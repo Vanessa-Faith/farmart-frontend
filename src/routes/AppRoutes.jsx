@@ -2,7 +2,8 @@ import { Routes, Route } from 'react-router-dom'
 import Home from '../pages/Home'
 import Animals from '../pages/Animals'
 import Farmers from '../pages/Farmers'
-import Auth from '../pages/Auth'
+import Login from '../features/auth/Login'
+import Register from '../features/auth/Register'
 
 export default function AppRoutes(){
   return (
@@ -10,7 +11,9 @@ export default function AppRoutes(){
       <Route path="/" element={<Home/>} />
       <Route path="/animals" element={<Animals/>} />
       <Route path="/farmers" element={<Farmers/>} />
-      <Route path="/auth" element={<Auth/>} />
+      <Route path="/login" element={<Login/>} />
+      <Route path="/register" element={<Register/>} />
+      <Route path="/auth" element={<Login/>} />
     </Routes>
   )
 }
