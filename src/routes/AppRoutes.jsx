@@ -6,6 +6,7 @@ import Farmers from '../pages/Farmers'
 import Login from '../features/auth/Login'
 import Register from '../features/auth/Register'
 
+function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home/>} />
@@ -17,3 +18,5 @@ import Register from '../features/auth/Register'
     </Routes>
   )
 }
+
+export default AppRoutes
