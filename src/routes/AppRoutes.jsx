@@ -1,11 +1,11 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import Home from '../pages/Home'
 import Animals from '../pages/Animals'
 import Farmers from '../pages/Farmers'
 import Login from '../features/auth/Login'
 import Register from '../features/auth/Register'
 
-export default function AppRoutes(){
   return (
     <Routes>
       <Route path="/" element={<Home/>} />
