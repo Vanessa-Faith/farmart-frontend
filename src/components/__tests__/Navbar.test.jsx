@@ -1,9 +1,8 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { BrowserRouter } from 'react-router-dom';
-import cartReducer from '../../features/cart/cartSlice';
 import authReducer from '../../features/auth/authSlice';
 import Navbar from '../Navbar';
 
@@ -11,15 +10,9 @@ import Navbar from '../Navbar';
 const createMockStore = (initialState = {}) => {
   return configureStore({
     reducer: {
-      cart: cartReducer,
       auth: authReducer,
     },
     preloadedState: {
-      cart: {
-        items: [],
-        isOpen: false,
-        ...initialState.cart,
-      },
       auth: {
         user: null,
         token: null,
@@ -46,10 +39,10 @@ const renderWithProviders = (component, initialState = {}) => {
 
 describe('Navbar Component', () => {
   describe('when user is not logged in', () => {
-    test('renders Farmart brand name', () => {
+    test('renders FarMart brand name', () => {
       renderWithProviders(<Navbar />);
 
-      expect(screen.getByText('Farmart')).toBeInTheDocument();
+      expect(screen.getByText(/FarMart/i)).toBeInTheDocument();
     });
 
     test('renders Login link', () => {
@@ -70,16 +63,18 @@ describe('Navbar Component', () => {
       expect(screen.queryByRole('button', { name: /logout/i })).not.toBeInTheDocument();
     });
 
-    test('does not render Cart button', () => {
+    test('renders Home link', () => {
       renderWithProviders(<Navbar />);
 
-      expect(screen.queryByText(/cart/i)).not.toBeInTheDocument();
+      const homeLinks = screen.getAllByRole('link', { name: /home/i });
+      expect(homeLinks.length).toBeGreaterThan(0);
     });
 
-    test('renders Help button', () => {
+    test('renders Animals link', () => {
       renderWithProviders(<Navbar />);
 
-      expect(screen.getByText(/help/i)).toBeInTheDocument();
+      const animalLinks = screen.getAllByRole('link', { name: /animals/i });
+      expect(animalLinks.length).toBeGreaterThan(0);
     });
   });
 
@@ -91,58 +86,29 @@ describe('Navbar Component', () => {
       },
     };
 
-    test('renders user avatar with initial', () => {
+    test('renders greeting with user name', () => {
       renderWithProviders(<Navbar />, buyerState);
 
-      expect(screen.getByText('j')).toBeInTheDocument();
-    });
-
-    test('renders username', () => {
-      renderWithProviders(<Navbar />, buyerState);
-
-      expect(screen.getByText('John Buyer')).toBeInTheDocument();
-    });
-
-    test('renders Cart button for buyer', () => {
-      renderWithProviders(<Navbar />, buyerState);
-
-      expect(screen.getByText(/cart/i)).toBeInTheDocument();
+      expect(screen.getByText(/Hi, John Buyer/i)).toBeInTheDocument();
     });
 
     test('renders Logout button', () => {
       renderWithProviders(<Navbar />, buyerState);
 
-      expect(screen.getByText(/logout/i)).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /logout/i })).toBeInTheDocument();
     });
 
     test('does not render Login/Register links', () => {
       renderWithProviders(<Navbar />, buyerState);
 
-      expect(screen.queryByRole('link', { name: /login/i })).not.toBeInTheDocument();
-      expect(screen.queryByRole('link', { name: /register/i })).not.toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: /^login$/i })).not.toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: /^register$/i })).not.toBeInTheDocument();
     });
 
-    test('renders Browse Animals navigation link', () => {
+    test('does not render Dashboard link for buyer', () => {
       renderWithProviders(<Navbar />, buyerState);
 
-      expect(screen.getByText(/browse animals/i)).toBeInTheDocument();
-    });
-
-    test('renders My Orders navigation link', () => {
-      renderWithProviders(<Navbar />, buyerState);
-
-      expect(screen.getByText(/my orders/i)).toBeInTheDocument();
-    });
-
-    test('shows cart badge when items in cart', () => {
-      renderWithProviders(<Navbar />, {
-        ...buyerState,
-        cart: {
-          items: [{ id: 1, quantity: 3 }],
-        },
-      });
-
-      expect(screen.getByText('3')).toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: /dashboard/i })).not.toBeInTheDocument();
     });
   });
 
@@ -154,39 +120,22 @@ describe('Navbar Component', () => {
       },
     };
 
-    test('renders user avatar for farmer', () => {
+    test('renders greeting with farmer name', () => {
       renderWithProviders(<Navbar />, farmerState);
 
-      expect(screen.getByText('j')).toBeInTheDocument();
+      expect(screen.getByText(/Hi, Jane Farmer/i)).toBeInTheDocument();
     });
 
-    test('does NOT render Cart button for farmer', () => {
+    test('renders Dashboard navigation link for farmer', () => {
       renderWithProviders(<Navbar />, farmerState);
 
-      // Farmers don't need a cart
-      const cartButtons = screen.queryAllByText(/cart/i);
-      const cartButton = cartButtons.find(el => 
-        el.closest('button')?.classList.contains('navbar__btn--cart')
-      );
-      expect(cartButton).toBeUndefined();
+      expect(screen.getByRole('link', { name: /dashboard/i })).toBeInTheDocument();
     });
 
-    test('renders Dashboard navigation link', () => {
+    test('renders Logout button', () => {
       renderWithProviders(<Navbar />, farmerState);
 
-      expect(screen.getByText(/dashboard/i)).toBeInTheDocument();
-    });
-
-    test('renders Orders navigation link', () => {
-      renderWithProviders(<Navbar />, farmerState);
-
-      expect(screen.getByText(/orders/i)).toBeInTheDocument();
-    });
-
-    test('does NOT render Browse Animals link', () => {
-      renderWithProviders(<Navbar />, farmerState);
-
-      expect(screen.queryByText(/browse animals/i)).not.toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /logout/i })).toBeInTheDocument();
     });
   });
 });

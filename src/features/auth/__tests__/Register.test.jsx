@@ -41,65 +41,54 @@ describe('Register Component', () => {
   test('renders registration form with all required fields', () => {
     renderWithProviders(<Register />);
 
-    expect(screen.getByPlaceholderText(/full name/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/email/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/password/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('John Doe')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('your@email.com')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('••••••••')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /register/i })).toBeInTheDocument();
   });
 
   test('renders register heading', () => {
     renderWithProviders(<Register />);
 
-    expect(screen.getByRole('heading', { name: /register/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /create account/i })).toBeInTheDocument();
   });
 
-  test('renders role selection dropdown', () => {
+  test('renders role selection buttons', () => {
     renderWithProviders(<Register />);
 
-    const roleSelect = screen.getByRole('combobox');
-    expect(roleSelect).toBeInTheDocument();
-  });
-
-  test('role dropdown has buyer and farmer options', () => {
-    renderWithProviders(<Register />);
-
-    const roleSelect = screen.getByRole('combobox');
-    const options = roleSelect.querySelectorAll('option');
-
-    expect(options.length).toBe(2);
-    expect(screen.getByRole('option', { name: /buyer/i })).toBeInTheDocument();
-    expect(screen.getByRole('option', { name: /farmer/i })).toBeInTheDocument();
+    expect(screen.getByText('Buyer')).toBeInTheDocument();
+    expect(screen.getByText('Farmer')).toBeInTheDocument();
   });
 
   test('default role is buyer', () => {
     renderWithProviders(<Register />);
 
-    const roleSelect = screen.getByRole('combobox');
-    expect(roleSelect.value).toBe('buyer');
+    const buyerButton = screen.getByText('Buyer').closest('button');
+    expect(buyerButton).toHaveClass('role-card--active');
   });
 
   test('allows user to change role to farmer', () => {
     renderWithProviders(<Register />);
 
-    const roleSelect = screen.getByRole('combobox');
-    fireEvent.change(roleSelect, { target: { value: 'farmer' } });
+    const farmerButton = screen.getByText('Farmer').closest('button');
+    fireEvent.click(farmerButton);
 
-    expect(roleSelect.value).toBe('farmer');
+    expect(farmerButton).toHaveClass('role-card--active');
   });
 
   test('allows user to type in name field', () => {
     renderWithProviders(<Register />);
 
-    const nameInput = screen.getByPlaceholderText(/full name/i);
-    fireEvent.change(nameInput, { target: { value: 'John Doe' } });
+    const nameInput = screen.getByPlaceholderText('John Doe');
+    fireEvent.change(nameInput, { target: { value: 'Jane Smith' } });
 
-    expect(nameInput.value).toBe('John Doe');
+    expect(nameInput.value).toBe('Jane Smith');
   });
 
   test('allows user to type in email field', () => {
     renderWithProviders(<Register />);
 
-    const emailInput = screen.getByPlaceholderText(/email/i);
+    const emailInput = screen.getByPlaceholderText('your@email.com');
     fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
 
     expect(emailInput.value).toBe('john@example.com');
@@ -108,7 +97,7 @@ describe('Register Component', () => {
   test('allows user to type in password field', () => {
     renderWithProviders(<Register />);
 
-    const passwordInput = screen.getByPlaceholderText(/password/i);
+    const passwordInput = screen.getByPlaceholderText('••••••••');
     fireEvent.change(passwordInput, { target: { value: 'securepassword123' } });
 
     expect(passwordInput.value).toBe('securepassword123');
@@ -117,9 +106,9 @@ describe('Register Component', () => {
   test('all required fields have required attribute', () => {
     renderWithProviders(<Register />);
 
-    const nameInput = screen.getByPlaceholderText(/full name/i);
-    const emailInput = screen.getByPlaceholderText(/email/i);
-    const passwordInput = screen.getByPlaceholderText(/password/i);
+    const nameInput = screen.getByPlaceholderText('John Doe');
+    const emailInput = screen.getByPlaceholderText('your@email.com');
+    const passwordInput = screen.getByPlaceholderText('••••••••');
 
     expect(nameInput).toBeRequired();
     expect(emailInput).toBeRequired();

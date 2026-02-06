@@ -59,7 +59,8 @@ describe('AnimalCard Component', () => {
   test('renders animal type and breed', () => {
     renderWithProviders(<AnimalCard animal={mockAnimal} />);
 
-    expect(screen.getByText(/Cattle.*Holstein/)).toBeInTheDocument();
+    expect(screen.getByText(/Cattle/)).toBeInTheDocument();
+    expect(screen.getByText(/Holstein/)).toBeInTheDocument();
   });
 
   test('renders animal age', () => {

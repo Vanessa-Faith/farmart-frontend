@@ -41,21 +41,21 @@ describe('Login Component', () => {
   test('renders login form with email and password fields', () => {
     renderWithProviders(<Login />);
 
-    expect(screen.getByPlaceholderText(/email/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/password/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('your@email.com')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('••••••••')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /login/i })).toBeInTheDocument();
   });
 
   test('renders login heading', () => {
     renderWithProviders(<Login />);
 
-    expect(screen.getByRole('heading', { name: /login/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /welcome back/i })).toBeInTheDocument();
   });
 
   test('allows user to type in email field', () => {
     renderWithProviders(<Login />);
 
-    const emailInput = screen.getByPlaceholderText(/email/i);
+    const emailInput = screen.getByPlaceholderText('your@email.com');
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
 
     expect(emailInput.value).toBe('test@example.com');
@@ -64,7 +64,7 @@ describe('Login Component', () => {
   test('allows user to type in password field', () => {
     renderWithProviders(<Login />);
 
-    const passwordInput = screen.getByPlaceholderText(/password/i);
+    const passwordInput = screen.getByPlaceholderText('••••••••');
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
 
     expect(passwordInput.value).toBe('password123');
@@ -73,22 +73,22 @@ describe('Login Component', () => {
   test('email field has correct type attribute', () => {
     renderWithProviders(<Login />);
 
-    const emailInput = screen.getByPlaceholderText(/email/i);
+    const emailInput = screen.getByPlaceholderText('your@email.com');
     expect(emailInput).toHaveAttribute('type', 'email');
   });
 
   test('password field has correct type attribute', () => {
     renderWithProviders(<Login />);
 
-    const passwordInput = screen.getByPlaceholderText(/password/i);
+    const passwordInput = screen.getByPlaceholderText('••••••••');
     expect(passwordInput).toHaveAttribute('type', 'password');
   });
 
   test('both fields are required', () => {
     renderWithProviders(<Login />);
 
-    const emailInput = screen.getByPlaceholderText(/email/i);
-    const passwordInput = screen.getByPlaceholderText(/password/i);
+    const emailInput = screen.getByPlaceholderText('your@email.com');
+    const passwordInput = screen.getByPlaceholderText('••••••••');
 
     expect(emailInput).toBeRequired();
     expect(passwordInput).toBeRequired();
@@ -111,5 +111,12 @@ describe('Login Component', () => {
 
     const loginButton = screen.getByRole('button', { name: /logging in/i });
     expect(loginButton).toBeDisabled();
+  });
+
+  test('renders role selection with buyer and farmer options', () => {
+    renderWithProviders(<Login />);
+
+    expect(screen.getByText('Buyer')).toBeInTheDocument();
+    expect(screen.getByText('Farmer')).toBeInTheDocument();
   });
 });
