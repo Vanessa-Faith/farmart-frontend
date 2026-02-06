@@ -1,11 +1,19 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { addToCart } from '../features/cart/cartSlice'
 import { FiCheck } from 'react-icons/fi'
 
 export default function AnimalCard({ animal }) {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { token } = useSelector((state) => state.auth)
 
   const handleAddToCart = () => {
+    if (!token) {
+      // Redirect to login if not authenticated
+      navigate('/login', { state: { from: '/animals', message: 'Please login to add items to cart' } })
+      return
+    }
     dispatch(addToCart(animal))
   }
 
