@@ -1,48 +1,48 @@
 import { Link } from 'react-router-dom'
 
 export default function Home() {
-  // This component now only shows for non-logged in users
-  // Logged-in users are redirected via AppRoutes
   return (
-    <main className="home">
-      <section className="hero">
+    <main id="home" className="home">
+      <section className="hero" aria-labelledby="hero-title">
         <div className="hero__content">
-          <span className="hero__eyebrow">Farm Fresh Marketplace</span>
-          <h1>Quality Livestock, Straight from the Farm</h1>
+          <p className="hero__eyebrow">FarMart</p>
+          <h1 id="hero-title">Sell Direct. Earn More. Just Fair Trade.</h1>
           <p className="hero__subtitle">
-            Connect directly with local farmers. Browse healthy, well-cared-for livestock
-            and support sustainable agriculture in your community.
+            Connecting farmers directly to buyers and distributors, eliminating
+            middle men — transparently, securely, and profitably.
           </p>
           <div className="hero__actions">
-            <Link to="/register" className="btn btn--primary">
-              Get Started
-            </Link>
-            <Link to="/login" className="btn btn--ghost">
-              Sign In
-            </Link>
+            <Link to="/auth" className="btn btn--primary">Get started</Link>
+            <Link to="/animals" className="btn btn--secondary">Browse animals</Link>
           </div>
         </div>
       </section>
 
-      <section className="section">
+      <section id="about" className="section section--dark">
         <div className="section__inner">
-          <h2>Why Choose FarMart?</h2>
-          <ul className="features-list">
-            <li>🐄 Direct from verified local farmers</li>
-            <li>✅ Health-checked and vaccinated livestock</li>
-            <li>🚚 Convenient delivery options</li>
-            <li>💬 Direct communication with sellers</li>
-          </ul>
+          <h2>About us</h2>
+          <p>
+            FarMart helps farmers reach buyers directly, with transparent pricing
+            and safer transactions.
+          </p>
         </div>
       </section>
 
-      <section className="section section--dark">
+      <section id="contact" className="section">
         <div className="section__inner">
-          <h2>For Farmers</h2>
-          <p>List your livestock and reach buyers across the region.</p>
-          <Link to="/register" className="btn btn--secondary" style={{ marginTop: '20px' }}>
-            Start Selling
-          </Link>
+          <h2>Contact us</h2>
+          <p>Email: support@farmart.example</p>
+        </div>
+      </section>
+
+      <section id="services" className="section section--dark">
+        <div className="section__inner">
+          <h2>Services</h2>
+          <ul>
+            <li>Verified listings</li>
+            <li>Secure payments</li>
+            <li>Order management</li>
+          </ul>
         </div>
       </section>
     </main>
