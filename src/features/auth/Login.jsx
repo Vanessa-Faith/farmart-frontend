@@ -1,13 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from './authSlice';
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import './Auth.css';
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { status, error } = useSelector((state) => state.auth);
+
+  // Get redirect info from location state (e.g., from add to cart redirect)
+  const from = location.state?.from || '/';
+  const redirectMessage = location.state?.message;
 
   const [role, setRole] = useState('buyer');
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -20,7 +25,9 @@ export default function Login() {
     e.preventDefault();
     const result = await dispatch(loginUser({ ...formData, role }));
     if (result.meta.requestStatus === 'fulfilled') {
-      navigate(role === 'farmer' ? '/farmer/dashboard' : '/');
+      // Redirect to original destination or role-based default
+      const destination = from !== '/' ? from : (role === 'farmer' ? '/farmer/dashboard' : '/');
+      navigate(destination);
     }
   };
 
@@ -33,6 +40,12 @@ export default function Login() {
         </div>
 
         <h1 className="auth-title">Welcome Back</h1>
+
+        {redirectMessage && (
+          <div className="auth-message">
+            {redirectMessage}
+          </div>
+        )}
 
         <div className="role-picker">
           <button
