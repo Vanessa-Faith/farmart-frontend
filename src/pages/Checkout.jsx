@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { kenyanCounties } from '../utils/countiesRaniel';
 
-function CheckoutRaniel() {
+function Checkout() {
   const navigate = useNavigate();
-  const cartItems = useSelector((state) => state.cartRaniel.items);
+  const cartItems = useSelector((state) => state.Cart.items);
 
   const [phone, setPhone] = useState('');
   const [county, setCounty] = useState('');
@@ -144,4 +144,4 @@ function CheckoutRaniel() {
   );
 }
 
-export default CheckoutRaniel;
+export default Checkout;

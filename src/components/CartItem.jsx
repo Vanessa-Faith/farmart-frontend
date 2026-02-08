@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CartItemRaniel = ({ item, onRemove, onQuantityChange }) => {
+const CartItem = ({ item, onRemove, onQuantityChange }) => {
   const subtotal = item.price_per_unit * item.quantity;
 
   return (
@@ -59,4 +59,4 @@ const CartItemRaniel = ({ item, onRemove, onQuantityChange }) => {
   );
 };
 
-export default CartItemRaniel;
+export default CartItem;

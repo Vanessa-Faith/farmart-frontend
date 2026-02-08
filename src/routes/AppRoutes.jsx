@@ -4,8 +4,8 @@ import Animals from '../pages/Animals'
 import Farmers from '../pages/Farmers'
 import Auth from '../pages/Auth'
 
-import CartRaniel from '../pages/CartRaniel'
-import CheckoutRaniel from '../pages/CheckoutRaniel'
+import Cart from '../pages/Cart'
+import Checkout from '../pages/Checkout'
 
 export default function AppRoutes(){
   return (
@@ -15,8 +15,8 @@ export default function AppRoutes(){
       <Route path="/farmers" element={<Farmers/>} />
       <Route path="/auth" element={<Auth/>} />
 
-      <Route path="/cart-raniel" element={<CartRaniel/>} />
-      <Route path="/checkout-raniel" element={<CheckoutRaniel/>} />
+      <Route path="/cart" element={<Cart/>} />
+      <Route path="/checkout" element={<Checkout/>} />
     </Routes>
   )
 }

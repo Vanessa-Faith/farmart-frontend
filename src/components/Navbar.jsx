@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export default function Navbar() {
-  const items = useSelector((state) => state.cartRaniel.items);
+  const items = useSelector((state) => state.Cart.items);
   const cartCount = items.reduce((total, item) => total + item.quantity, 0);
 
   return (

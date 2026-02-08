@@ -36,8 +36,8 @@ const initialState = {
   error: null,
 };
 
-const cartSliceRaniel = createSlice({
-  name: 'cartRaniel',
+const cartSlice = createSlice({
+  name: 'Cart',
   initialState,
   reducers: {
     addItem: (state, action) => {
@@ -64,5 +64,5 @@ const cartSliceRaniel = createSlice({
   },
 });
 
-export const { addItem, removeItem, updateQuantity, clearCart } = cartSliceRaniel.actions;
-export default cartSliceRaniel.reducer;
+export const { addItem, removeItem, updateQuantity, clearCart } = cartSlice.actions;
+export default cartSlice.reducer;

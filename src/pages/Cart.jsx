@@ -5,13 +5,13 @@ import {
   removeItem,
   updateQuantity,
   clearCart,
-} from '../features/cart/cartSliceRaniel';
-import CartItemRaniel from '../components/CartItemRaniel';
+} from '../features/cart/cartSlice';
+import CartItem from '../components/CartItem';
 
-function CartRaniel() {
+function Cart() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const items = useSelector((state) => state.cartRaniel.items);
+  const items = useSelector((state) => state.Cart.items);
 
   const total = items.reduce((sum, item) => sum + item.price_per_unit * item.quantity, 0);
 
@@ -67,7 +67,7 @@ function CartRaniel() {
           <>
             <div className="space-y-6 mb-12">
               {items.map((item) => (
-                <CartItemRaniel
+                <CartItem
                   key={item.id}
                   item={item}
                   onRemove={handleRemove}
@@ -87,7 +87,7 @@ function CartRaniel() {
               </div>
 
               <button
-                onClick={() => navigate('/checkout-raniel')}
+                onClick={() => navigate('/checkout')}
                 className="w-full bg-green-600 text-white py-4 px-10 rounded-xl font-semibold text-lg hover:bg-green-700 transition shadow-md"
               >
                 Proceed to Checkout
@@ -100,4 +100,4 @@ function CartRaniel() {
   );
 }
 
-export default CartRaniel;
+export default Cart;
