@@ -1,22 +1,32 @@
-import { Routes, Route } from 'react-router-dom'
-import Home from '../pages/Home'
-import Animals from '../pages/Animals'
-import Farmers from '../pages/Farmers'
-import Auth from '../pages/Auth'
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Home from '../pages/Home';
+import Animals from '../pages/Animals';
+import Farmers from '../pages/Farmers';
+import Login from '../features/auth/Login';
+import Register from '../features/auth/Register';
+import Cart from '../pages/Cart';
+import Checkout from '../pages/Checkout';
 
-import Cart from '../pages/Cart'
-import Checkout from '../pages/Checkout'
+export default function AppRoutes() {
+  const { token } = useSelector((state) => state.auth);
 
-export default function AppRoutes(){
   return (
     <Routes>
-      <Route path="/" element={<Home/>} />
-      <Route path="/animals" element={<Animals/>} />
-      <Route path="/farmers" element={<Farmers/>} />
-      <Route path="/auth" element={<Auth/>} />
+      <Route path="/" element={<Home />} />
+      <Route path="/animals" element={<Animals />} />
+      <Route path="/farmers" element={<Farmers />} />
 
-      <Route path="/cart" element={<Cart/>} />
-      <Route path="/checkout" element={<Checkout/>} />
+      {/* Auth routes from dev */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      {/* Your Feature 3 routes */}
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/checkout" element={<Checkout />} />
+
+      {/* Optional: redirect old /auth to login */}
+      <Route path="/auth" element={<Navigate to="/login" replace />} />
     </Routes>
-  )
+  );
 }

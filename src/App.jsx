@@ -1,13 +1,14 @@
 import './App.css'
 import AppRoutes from './routes/AppRoutes'
 import Navbar from './components/Navbar'
+import Cart from './components/Cart'
 
-function App(){
+function App() {
   return (
-    <>
+    <div className="app">
       <Navbar />
       <AppRoutes />
-    </>
+    </div>
   )
 }
 
