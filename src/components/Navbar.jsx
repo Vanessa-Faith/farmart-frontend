@@ -1,24 +1,28 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { logout } from '../features/auth/authSlice'
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../features/auth/authSlice';
 
 export default function Navbar() {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const { token, user } = useSelector((state) => state.auth)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { token, user } = useSelector((state) => state.auth);
+
+  const items = useSelector((state) => state.cart.items);
+  const cartCount = items.reduce((total, item) => total + item.quantity, 0);
 
   const handleLogout = () => {
-    dispatch(logout())
-    navigate('/')
-  }
+    dispatch(logout());
+    navigate('/');
+  };
 
   return (
     <header className="navbar">
       <div className="navbar__brand">
         <Link to="/" aria-label="Farmart home">
-          🌿 FarMart
+           FarMart
         </Link>
       </div>
+
       <nav className="navbar__links" aria-label="Primary">
         <Link to="/">Home</Link>
         <Link to="/animals">Animals</Link>
@@ -26,7 +30,47 @@ export default function Navbar() {
           <Link to="/farmer/dashboard">Dashboard</Link>
         )}
       </nav>
+
       <div className="navbar__actions">
+        {/* Cart icon + badge (your feature) */}
+        <div style={{ position: 'relative', marginRight: '16px' }}>
+          <Link
+            to="/cart"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              textDecoration: 'none',
+              color: '#333',
+              fontSize: '1.4rem',
+            }}
+          >
+            🛒
+            {cartCount > 0 && (
+              <span
+                style={{
+                  position: 'absolute',
+                  top: '-8px',
+                  right: '-10px',
+                  backgroundColor: '#ef4444',
+                  color: 'white',
+                  fontSize: '11px',
+                  fontWeight: 'bold',
+                  minWidth: '18px',
+                  height: '18px',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '0 4px',
+                  border: '1px solid white',
+                }}
+              >
+                {cartCount}
+              </span>
+            )}
+          </Link>
+        </div>
+
         {token ? (
           <>
             <span className="navbar__user">Hi, {user?.name || 'User'}</span>
@@ -42,5 +86,5 @@ export default function Navbar() {
         )}
       </div>
     </header>
-  )
+  );
 }
