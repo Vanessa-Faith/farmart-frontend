@@ -1,71 +1,140 @@
 .animal-card {
-  background: white;
-  border: 1px solid #c8e6c9;
-  border-radius: 8px;
+  background: #1a2f1e;
+  border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border: 1px solid #2e7d32;
+}
+
+.animal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(46, 125, 50, 0.3);
 }
 
 .animal-image {
   width: 100%;
-  height: 180px;
-  background: #f1f8e9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  background: #0a1f0d;
 }
 
 .animal-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s;
 }
 
-.no-image {
-  color: #81c784;
-  font-size: 14px;
+.animal-card:hover .animal-image img {
+  transform: scale(1.05);
+}
+
+.badge-stock {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ff6b6b;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
 }
 
 .animal-info {
-  padding: 16px;
+  padding: 20px;
+}
+
+.animal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
 }
 
 .animal-info h3 {
-  margin: 0 0 8px 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: #1b5e20;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  flex: 1;
 }
 
-.animal-breed,
-.animal-age,
 .animal-price {
-  margin: 4px 0;
-  font-size: 14px;
-  color: #2e7d32;
+  font-size: 22px;
+  font-weight: 700;
+  color: #66bb6a;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+
+.animal-meta {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.animal-type,
+.animal-breed {
+  padding: 4px 10px;
+  background: rgba(46, 125, 50, 0.2);
+  color: #81c784;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.animal-age,
+.animal-location {
+  margin: 6px 0;
+  font-size: 13px;
+  color: #a5d6a7;
+}
+
+.animal-location {
+  color: #81c784;
+  font-weight: 500;
 }
 
 .animal-actions {
   display: flex;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 10px;
+  margin-top: 16px;
 }
 
 .btn-add-cart,
 .btn-view {
   flex: 1;
-  padding: 10px;
-  border: 1px solid #66bb6a;
-  border-radius: 4px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
   font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
-  background: white;
-  color: #2e7d32;
   transition: all 0.2s;
 }
 
-.btn-add-cart:hover,
+.btn-add-cart {
+  background: #2e7d32;
+  color: white;
+}
+
+.btn-add-cart:hover {
+  background: #1b5e20;
+  transform: translateY(-2px);
+}
+
+.btn-view {
+  background: transparent;
+  color: #81c784;
+  border: 1px solid #2e7d32;
+}
+
 .btn-view:hover {
-  background: #e8f5e9;
-  border-color: #2e7d32;
+  background: rgba(46, 125, 50, 0.1);
+  border-color: #66bb6a;
 }

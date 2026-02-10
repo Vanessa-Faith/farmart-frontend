@@ -3,7 +3,9 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   items: [],
   isOpen: false,
-}
+  status: 'idle',
+  error: null,
+};
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -18,11 +20,11 @@ const cartSlice = createSlice({
       }
     },
     removeFromCart: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload)
+      state.items = state.items.filter(item => item.id !== action.payload);
     },
     updateQuantity: (state, action) => {
-      const { id, quantity } = action.payload
-      const item = state.items.find((item) => item.id === id)
+      const { id, quantity } = action.payload;
+      const item = state.items.find(item => item.id === id);
       if (item) {
         if (quantity <= 0) {
           state.items = state.items.filter((i) => i.id !== id)
@@ -58,9 +60,9 @@ export const {
 
 export const selectCartItems = (state) => state.cart.items
 export const selectCartTotal = (state) =>
-  state.cart.items.reduce((total, item) => total + item.price * item.quantity, 0)
+  state.cart.items.reduce((total, item) => total + (item.price_per_unit || item.price || 0) * item.quantity, 0);
 export const selectCartItemCount = (state) =>
   state.cart.items.reduce((count, item) => count + item.quantity, 0)
 export const selectIsCartOpen = (state) => state.cart.isOpen
 
-export default cartSlice.reducer
+export default cartSlice.reducer;

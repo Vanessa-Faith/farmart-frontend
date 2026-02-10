@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit'
-import animalsReducer from '../features/animals/animalsSlice'
-import authReducer from '../features/auth/authSlice'
-import cartReducer from '../features/cart/cartSlice'
-import ordersReducer from '../features/orders/ordersSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import animalsReducer from '../features/animals/animalsSlice';
+import authReducer from '../features/auth/authSlice';
+import cartReducer from '../features/cart/cartSlice';
+import ordersReducer from '../features/orders/ordersSlice';
 
 const store = configureStore({
   reducer: {
@@ -11,6 +11,6 @@ const store = configureStore({
     cart: cartReducer,
     orders: ordersReducer,
   },
-})
+});
 
-export default store
+export default store;

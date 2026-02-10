@@ -16,7 +16,7 @@ function Cart() {
   const total = useSelector(selectCartTotal)
 
   const handleRemove = (id) => {
-    dispatch(removeFromCart(id))
+    dispatch(removeFromCart(id));
   };
 
   const handleQuantityChange = (id, newQuantity) => {
