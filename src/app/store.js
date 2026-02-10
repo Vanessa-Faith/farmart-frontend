@@ -1,25 +1,16 @@
-<<<<<<< feature/cart-and-orders
 import { configureStore } from '@reduxjs/toolkit';
 import animalsReducer from '../features/animals/animalsSlice';
 import authReducer from '../features/auth/authSlice';
-import CartReducer from '../features/cart/cartSlice';
-=======
-import { configureStore } from '@reduxjs/toolkit'
-import animalsReducer from '../features/animals/animalsSlice'
-import authReducer from '../features/auth/authSlice'
-import ordersReducer from '../features/orders/ordersSlice'
->>>>>>> dev
+import cartReducer from '../features/cart/cartSlice';
+import ordersReducer from '../features/orders/ordersSlice';
 
 const store = configureStore({
   reducer: {
     animals: animalsReducer,
     auth: authReducer,
-<<<<<<< feature/cart-and-orders
-    Cart: CartReducer,
-=======
+    cart: cartReducer,
     orders: ordersReducer,
->>>>>>> dev
   },
-})
+});
 
-export default store
+export default store;
