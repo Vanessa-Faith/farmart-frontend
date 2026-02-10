@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
-  removeItem,
+  removeFromCart,
   updateQuantity,
   clearCart,
 } from '../features/cart/cartSlice';
@@ -16,7 +16,7 @@ function Cart() {
   const total = items.reduce((sum, item) => sum + item.price_per_unit * item.quantity, 0);
 
   const handleRemove = (id) => {
-    dispatch(removeItem(id));
+    dispatch(removeFromCart(id));
   };
 
   const handleQuantityChange = (id, newQuantity) => {
