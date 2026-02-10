@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { kenyanCounties } from '../utils/countiesRaniel';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { kenyanCounties } from '../utils/countiesRaniel'
 
 function Checkout() {
-  const navigate = useNavigate();
-  const cartItems = useSelector((state) => state.Cart.items);
+  const navigate = useNavigate()
+  const cartItems = useSelector((state) => state.cart.items)
 
-  const [phone, setPhone] = useState('');
-  const [county, setCounty] = useState('');
-  const [success, setSuccess] = useState(false);
+  const [phone, setPhone] = useState('')
+  const [county, setCounty] = useState('')
+  const [success, setSuccess] = useState(false)
 
-  const total = cartItems.reduce((sum, item) => sum + item.price_per_unit * item.quantity, 0);
+  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
   const handlePay = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!phone || !county) {
-      alert('Please fill in phone number and county');
-      return;
+      alert('Please fill in phone number and county')
+      return
     }
-    setSuccess(true);
-    alert(`Payment successful! Order placed for delivery to ${county}. Phone: ${phone}`);
+    setSuccess(true)
+    alert(`Payment successful! Order placed for delivery to ${county}. Phone: ${phone}`)
   };
 
   if (success) {
@@ -36,7 +36,7 @@ function Checkout() {
             Contact: <strong>{phone}</strong>
           </p>
           <button
-            onClick={() => navigate('/cart-raniel')}
+            onClick={() => navigate('/cart')}
             className="bg-green-600 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:bg-green-700 transition"
           >
             Back to Cart
@@ -63,17 +63,17 @@ function Checkout() {
                 <div key={item.id} className="flex justify-between items-center border-b pb-4">
                   <div className="flex items-center">
                     <img
-                      src={item.image}
-                      alt={item.title}
+                      src={item.image || 'https://via.placeholder.com/64x64?text=Animal'}
+                      alt={item.name}
                       className="w-16 h-16 object-cover rounded mr-4"
                     />
                     <div>
-                      <p className="font-medium">{item.title} ({item.breed})</p>
+                      <p className="font-medium">{item.name} ({item.breed})</p>
                       <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
                     </div>
                   </div>
                   <p className="font-semibold">
-                    KES {(item.price_per_unit * item.quantity).toLocaleString()}
+                    KES {(item.price * item.quantity).toLocaleString()}
                   </p>
                 </div>
               ))}
@@ -133,7 +133,7 @@ function Checkout() {
           </form>
 
           <button
-            onClick={() => navigate('/cart-raniel')}
+            onClick={() => navigate('/cart')}
             className="mt-6 w-full bg-gray-200 text-gray-800 py-4 px-8 rounded-xl font-semibold text-lg hover:bg-gray-300 transition"
           >
             Back to Cart
@@ -141,7 +141,7 @@ function Checkout() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Checkout;
+export default Checkout
