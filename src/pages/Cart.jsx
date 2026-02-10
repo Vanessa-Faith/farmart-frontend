@@ -1,32 +1,32 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import {
   removeFromCart,
   updateQuantity,
   clearCart,
-} from '../features/cart/cartSlice';
-import CartItem from '../components/CartItem';
+  selectCartItems,
+  selectCartTotal,
+} from '../features/cart/cartSlice'
+import CartItem from '../components/CartItem'
 
 function Cart() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const items = useSelector((state) => state.Cart.items);
-
-  const total = items.reduce((sum, item) => sum + item.price_per_unit * item.quantity, 0);
+  const items = useSelector(selectCartItems)
+  const total = useSelector(selectCartTotal)
 
   const handleRemove = (id) => {
     dispatch(removeFromCart(id));
   };
 
   const handleQuantityChange = (id, newQuantity) => {
-    if (newQuantity < 1) return;
-    dispatch(updateQuantity({ id, quantity: newQuantity }));
+    if (newQuantity < 1) return
+    dispatch(updateQuantity({ id, quantity: newQuantity }))
   };
 
   const handleClearCart = () => {
-    if (window.confirm("Are you sure you want to clear the entire cart?")) {
-      dispatch(clearCart());
+    if (window.confirm('Are you sure you want to clear the entire cart?')) {
+      dispatch(clearCart())
     }
   };
 
@@ -97,7 +97,7 @@ function Cart() {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default Cart;
+export default Cart

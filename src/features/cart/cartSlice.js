@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   items: [],
@@ -12,11 +12,11 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const existingItem = state.items.find(item => item.id === action.payload.id);
+      const existingItem = state.items.find((item) => item.id === action.payload.id)
       if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity += 1
       } else {
-        state.items.push({ ...action.payload, quantity: 1 });
+        state.items.push({ ...action.payload, quantity: 1 })
       }
     },
     removeFromCart: (state, action) => {
@@ -27,26 +27,26 @@ const cartSlice = createSlice({
       const item = state.items.find(item => item.id === id);
       if (item) {
         if (quantity <= 0) {
-          state.items = state.items.filter(i => i.id !== id);
+          state.items = state.items.filter((i) => i.id !== id)
         } else {
-          item.quantity = quantity;
+          item.quantity = quantity
         }
       }
     },
     clearCart: (state) => {
-      state.items = [];
+      state.items = []
     },
     toggleCart: (state) => {
-      state.isOpen = !state.isOpen;
+      state.isOpen = !state.isOpen
     },
     openCart: (state) => {
-      state.isOpen = true;
+      state.isOpen = true
     },
     closeCart: (state) => {
-      state.isOpen = false;
+      state.isOpen = false
     },
   },
-});
+})
 
 export const {
   addToCart,
@@ -56,13 +56,13 @@ export const {
   toggleCart,
   openCart,
   closeCart,
-} = cartSlice.actions;
+} = cartSlice.actions
 
-export const selectCartItems = (state) => state.cart.items;
+export const selectCartItems = (state) => state.cart.items
 export const selectCartTotal = (state) =>
   state.cart.items.reduce((total, item) => total + (item.price_per_unit || item.price || 0) * item.quantity, 0);
 export const selectCartItemCount = (state) =>
-  state.cart.items.reduce((count, item) => count + item.quantity, 0);
-export const selectIsCartOpen = (state) => state.cart.isOpen;
+  state.cart.items.reduce((count, item) => count + item.quantity, 0)
+export const selectIsCartOpen = (state) => state.cart.isOpen
 
 export default cartSlice.reducer;

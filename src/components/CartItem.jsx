@@ -1,25 +1,23 @@
-import React from 'react';
-
 const CartItem = ({ item, onRemove, onQuantityChange }) => {
-  const subtotal = item.price_per_unit * item.quantity;
+  const subtotal = item.price * item.quantity
 
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-white p-5 sm:p-6 rounded-xl shadow border border-gray-200 mb-6">
       <div className="flex items-center flex-1 mb-4 sm:mb-0">
         <img
-          src={item.image}
-          alt={item.title}
+          src={item.image || 'https://via.placeholder.com/120x120?text=Animal'}
+          alt={item.name}
           className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg mr-4 sm:mr-6 flex-shrink-0"
         />
         <div className="flex-1">
           <h3 className="font-semibold text-lg sm:text-xl text-gray-900">
-            {item.title} ({item.breed})
+            {item.name} ({item.breed})
           </h3>
-          <p className="text-sm text-gray-600 mt-1">
-            Age: {item.age_months} months
-          </p>
+          {typeof item.age === 'number' && (
+            <p className="text-sm text-gray-600 mt-1">Age: {item.age} months</p>
+          )}
           <p className="font-bold text-green-700 mt-2 text-lg">
-            KES {item.price_per_unit.toLocaleString()}
+            KES {item.price.toLocaleString()}
           </p>
         </div>
       </div>
@@ -56,7 +54,7 @@ const CartItem = ({ item, onRemove, onQuantityChange }) => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CartItem;
+export default CartItem
