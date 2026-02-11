@@ -16,7 +16,7 @@ const mockAnimals = [
     price: 2500,
     health_status: 'Vaccinated, Excellent health',
     description: 'High-quality dairy cow, excellent milk production',
-    image: 'https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=400&h=300&fit=crop',
+    image: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=400',
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const mockAnimals = [
     price: 450,
     health_status: 'Healthy, De-wormed',
     description: 'Strong and healthy breeding goat',
-    image: 'https://images.unsplash.com/photo-1524024973431-2ad916746881?w=400&h=300&fit=crop',
+    image: 'https://images.unsplash.com/photo-1533318087102-b3ad366ed041?w=400',
   },
   {
     id: 3,
@@ -40,7 +40,7 @@ const mockAnimals = [
     price: 350,
     health_status: 'Recently sheared, vaccinated',
     description: 'Premium wool quality sheep',
-    image: 'https://images.unsplash.com/photo-1484557985045-edf25e08da73?w=400&h=300&fit=crop',
+    image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400',
   },
   {
     id: 4,
@@ -64,7 +64,7 @@ const mockAnimals = [
     price: 600,
     health_status: 'Vaccinated, Healthy',
     description: 'Well-fed farm pig, great for breeding',
-    image: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=400&h=300&fit=crop',
+    image: 'https://images.unsplash.com/photo-1560114928-40f1f1eb26a0?w=400',
   },
 ]
 

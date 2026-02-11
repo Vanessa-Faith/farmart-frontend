@@ -1,0 +1,12 @@
+.animal-cell__image {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
+.animal-cell {
+  display: flex;
+  align-items: center;
+}

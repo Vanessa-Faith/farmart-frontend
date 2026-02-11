@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AnimalsList from './pages/AnimalsList';
-import AnimalDetail from './pages/AnimalDetail';
-import AddAnimal from './pages/AddAnimal';
-import EditAnimal from './pages/EditAnimal';
+import AnimalsList from './pages/AnimalsList.jsx';
+import AnimalDetail from './pages/AnimalDetail.jsx';
+import AddAnimal from './pages/AddAnimal.jsx';
+import EditAnimal from './pages/EditAnimal.jsx';
 
 function App() {
   return (

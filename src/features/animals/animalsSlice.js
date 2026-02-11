@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import api from '../../services/api';
+import api from '../../services/api.js';
 
 const initialState = {
   list: [],
@@ -29,7 +29,15 @@ export const fetchAnimalById = createAsyncThunk(
 export const createAnimal = createAsyncThunk(
   'animals/create',
   async (animalData) => {
-    const response = await api.post('/animals', animalData);
+    const formData = new FormData();
+    Object.keys(animalData).forEach(key => {
+      if (animalData[key] !== null && animalData[key] !== undefined) {
+        formData.append(key, animalData[key]);
+      }
+    });
+    const response = await api.post('/animals', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    });
     return response.data;
   }
 );
@@ -37,7 +45,15 @@ export const createAnimal = createAsyncThunk(
 export const updateAnimal = createAsyncThunk(
   'animals/update',
   async ({ id, data }) => {
-    const response = await api.put(`/animals/${id}`, data);
+    const formData = new FormData();
+    Object.keys(data).forEach(key => {
+      if (data[key] !== null && data[key] !== undefined) {
+        formData.append(key, data[key]);
+      }
+    });
+    const response = await api.put(`/animals/${id}`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    });
     return response.data;
   }
 );
@@ -62,6 +78,21 @@ const animalsSlice = createSlice({
     },
     clearCurrentAnimal(state) {
       state.current = null;
+    },
+    setList(state, action) {
+      state.list = action.payload;
+    },
+    addItem(state, action) {
+      state.list.push(action.payload);
+    },
+    removeItem(state, action) {
+      state.list = state.list.filter(a => a.id !== action.payload);
+    },
+    updateItem(state, action) {
+      const index = state.list.findIndex(a => a.id === action.payload.id);
+      if (index !== -1) {
+        state.list[index] = action.payload;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -100,11 +131,10 @@ const animalsSlice = createSlice({
   },
 });
 
-export const { setFilters, clearFilters, clearCurrentAnimal } = animalsSlice.actions;
+export const { setFilters, clearFilters, clearCurrentAnimal, setList, addItem, removeItem, updateItem } = animalsSlice.actions;
 
 // Legacy exports for backward compatibility
-export const addAnimal = createAnimal;
-export const removeAnimal = deleteAnimal;
-export const setAnimals = (animals) => ({ type: 'animals/setList', payload: animals });
+export const setAnimals = setList;
+export const addAnimal = addItem;
 
 export default animalsSlice.reducer;

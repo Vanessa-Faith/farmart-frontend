@@ -28,7 +28,6 @@ export default function Cart() {
   }
 
   const handleCheckout = () => {
-    // TODO: Implement checkout logic
     alert('Proceeding to checkout...')
   }
 

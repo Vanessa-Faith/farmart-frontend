@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { FiPlus, FiPackage, FiDollarSign, FiTrendingUp, FiEdit2, FiTrash2 } from 'react-icons/fi'
-import { setAnimals, addAnimal, removeAnimal, updateAnimal } from '../features/animals/animalsSlice'
+import { fetchAnimals, createAnimal, deleteAnimal, updateAnimal as updateAnimalThunk } from '../features/animals/animalsSlice'
+import './FarmerDashboard.css'
 
 // Mock data for farmer's animals
 const mockFarmerAnimals = [
@@ -49,7 +50,7 @@ const mockFarmerAnimals = [
 export default function FarmerDashboard() {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
-  const animals = useSelector((state) => state.animals.items)
+  const animals = useSelector((state) => state.animals.list || [])
   
   const [showAddModal, setShowAddModal] = useState(false)
   const [editingAnimal, setEditingAnimal] = useState(null)
@@ -67,10 +68,8 @@ export default function FarmerDashboard() {
 
   // Load farmer's animals on mount
   useEffect(() => {
-    if (animals.length === 0) {
-      dispatch(setAnimals(mockFarmerAnimals))
-    }
-  }, [dispatch, animals.length])
+    dispatch(fetchAnimals());
+  }, [dispatch])
 
   // Stats calculations
   const totalAnimals = animals.length
@@ -83,38 +82,42 @@ export default function FarmerDashboard() {
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleAddAnimal = (e) => {
+  const handleAddAnimal = async (e) => {
     e.preventDefault()
-    const newAnimal = {
-      ...formData,
-      id: Date.now(),
+    const animalData = {
+      title: formData.name,
+      animal_type: formData.animal_type,
+      breed: formData.breed,
       age: parseInt(formData.age),
-      weight: parseInt(formData.weight),
       price: parseInt(formData.price),
-      status: 'available',
+      description: formData.description,
+      image_url: formData.image,
     }
-    dispatch(addAnimal(newAnimal))
+    await dispatch(createAnimal(animalData))
+    await dispatch(fetchAnimals())
     setShowAddModal(false)
     resetForm()
   }
 
-  const handleEditAnimal = (e) => {
+  const handleEditAnimal = async (e) => {
     e.preventDefault()
-    const updatedAnimal = {
-      ...editingAnimal,
-      ...formData,
+    const animalData = {
+      title: formData.name,
+      animal_type: formData.animal_type,
+      breed: formData.breed,
       age: parseInt(formData.age),
-      weight: parseInt(formData.weight),
       price: parseInt(formData.price),
+      description: formData.description,
+      image_url: formData.image,
     }
-    dispatch(updateAnimal(updatedAnimal))
+    await dispatch(updateAnimalThunk({ id: editingAnimal.id, data: animalData }))
     setEditingAnimal(null)
     resetForm()
   }
 
-  const handleDeleteAnimal = (id) => {
+  const handleDeleteAnimal = async (id) => {
     if (window.confirm('Are you sure you want to delete this animal listing?')) {
-      dispatch(removeAnimal(id))
+      await dispatch(deleteAnimal(id))
     }
   }
 
@@ -129,7 +132,7 @@ export default function FarmerDashboard() {
       price: animal.price.toString(),
       health_status: animal.health_status,
       description: animal.description,
-      image: animal.image,
+      image: animal.image_url || animal.image || '',
     })
   }
 
@@ -218,12 +221,15 @@ export default function FarmerDashboard() {
               </tr>
             </thead>
             <tbody>
-              {animals.map((animal) => (
+              {animals.map((animal) => {
+                const imageUrl = animal.image_url || animal.image;
+                const name = animal.title || animal.name;
+                return (
                 <tr key={animal.id}>
                   <td>
                     <div className="animal-cell">
-                      <img src={animal.image} alt={animal.name} className="animal-cell__image" />
-                      <span className="animal-cell__name">{animal.name}</span>
+                      <img src={imageUrl} alt={name} className="animal-cell__image" />
+                      <span className="animal-cell__name">{name}</span>
                     </div>
                   </td>
                   <td>{animal.animal_type}</td>
@@ -254,7 +260,7 @@ export default function FarmerDashboard() {
                     </div>
                   </td>
                 </tr>
-              ))}
+              )})}
             </tbody>
           </table>
           {animals.length === 0 && (

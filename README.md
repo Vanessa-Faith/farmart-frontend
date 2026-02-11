@@ -37,18 +37,18 @@ farmart-frontend/
 │   │   └── store.js              # Redux store configuration
 │   ├── features/
 │   │   ├── auth/
-│   │   │   ├── authSlice.js      # Auth Redux slice (login/register/logout) ✅
-│   │   │   ├── Login.jsx         # Login form component ✅
-│   │   │   └── Register.jsx      # Register form component ✅
+│   │   │   ├── authSlice.js      # Auth Redux slice (login/register/logout)
+│   │   │   ├── Login.jsx         # Login form component
+│   │   │   └── Register.jsx      # Register form component
 │   │   ├── animals/
 │   │   │   └── animalsSlice.js   # Animals state (skeleton)
-│   │   ├── cart/                 # TODO: Cart feature
-│   │   └── orders/               # TODO: Orders feature
+│   │   ├── cart/                 # Cart feature
+│   │   └── orders/               # Orders feature
 │   ├── components/
 │   │   ├── Navbar.jsx            # Navigation bar (skeleton)
-│   │   └── PrivateRoute.jsx      # Protected route wrapper ✅
+│   │   └── PrivateRoute.jsx      # Protected route wrapper
 │   ├── services/
-│   │   └── api.js                # Axios instance with JWT interceptor ✅
+│   │   └── api.js                # Axios instance with JWT interceptor
 │   ├── App.jsx                   # Main app component with routing
 │   ├── main.jsx                  # Entry point
 │   └── index.css                 # Global styles
@@ -61,13 +61,13 @@ farmart-frontend/
 
 Each team member implements their assigned feature (frontend + backend together):
 
-### 🧪 Authentication (IN TESTING - Vanessa)
+### Authentication
 - **Redux**: `authSlice.js` with `loginUser`, `registerUser`, `logout` actions
 - **Components**: `Login.jsx`, `Register.jsx` forms with full validation
 - **Auth Flow**: JWT stored in localStorage, automatic header injection
 - **Protected Routes**: `PrivateRoute.jsx` redirects unauthenticated users
 
-### 🔨 Animals Listings (TODO - Team Member 2)
+### Animals Listings
 - **Redux**: Implement `animalsSlice.js` - fetch all, fetch by ID, create, update, delete
 - **Pages**: 
   - `AnimalList.jsx` - Browse animals, search, filters (species, price range)
@@ -75,7 +75,7 @@ Each team member implements their assigned feature (frontend + backend together)
   - `AnimalForm.jsx` - Create/edit animals (farmers only)
 - **API**: Integrate with `/api/animals` endpoints
 
-### 🔨 Shopping Cart (TODO - Team Member 3)
+### Shopping Cart
 - **Redux**: Create `cartSlice.js` - fetch cart, add item, update quantity, remove item
 - **Pages**:
   - `Cart.jsx` - View cart, update quantities, remove items, checkout button
@@ -83,7 +83,7 @@ Each team member implements their assigned feature (frontend + backend together)
   - `AddToCartButton.jsx` - Reusable button on animal cards
 - **API**: Integrate with `/api/carts` endpoints
 
-### 🔨 Orders & Payment (TODO - Team Member 4)
+### Orders & Payment
 - **Redux**: Create `ordersSlice.js` - create order, fetch orders, confirm/reject (farmers)
 - **Pages**:
   - `Checkout.jsx` - Review order, payment form, submit
@@ -91,7 +91,7 @@ Each team member implements their assigned feature (frontend + backend together)
   - `FarmerOrders.jsx` - Farmers view/confirm/reject orders
 - **API**: Integrate with `/api/orders` endpoints
 
-### 🔨 QA & Testing (Team Member 5)
+### QA & Testing
 - Write Cypress E2E tests for all features
 - Manual testing across features
 - Create test data and edge cases
@@ -151,7 +151,7 @@ useEffect(() => { dispatch(fetchItems()) }, []);
 
 ## Sprint Timeline (2 weeks)
 
-**Days 1-3**: Auth (DONE ✅) + Animals feature  
+**Days 1-3**: Auth + Animals feature  
 **Days 4-7**: Animals complete + Cart feature  
 **Days 8-11**: Orders/Payment + E2E testing  
 **Days 12-13**: Bug fixes + polish  

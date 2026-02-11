@@ -21,6 +21,10 @@ const AnimalDetail = () => {
   if (!currentAnimal) return null;
 
   const isFarmer = user?.role === 'farmer';
+  const imageUrl = currentAnimal.images?.[0] || currentAnimal.image_url;
+  const age = currentAnimal.age_months || currentAnimal.age;
+  const price = currentAnimal.price_per_unit || currentAnimal.price;
+  const type = currentAnimal.type || currentAnimal.animal_type;
 
   return (
     <div className="animal-detail-page">
@@ -34,8 +38,8 @@ const AnimalDetail = () => {
         <button onClick={() => navigate(-1)} className="btn-back-arrow">Back</button>
 
         <div className="animal-image-large">
-          {currentAnimal.images && currentAnimal.images.length > 0 ? (
-            <img src={currentAnimal.images[0]} alt={currentAnimal.title} />
+          {imageUrl ? (
+            <img src={imageUrl} alt={currentAnimal.title} />
           ) : (
             <div className="no-image">PHOTO HERE</div>
           )}
@@ -44,8 +48,8 @@ const AnimalDetail = () => {
         <div className="animal-details">
           <h2>{currentAnimal.title}</h2>
           <p>Breed: {currentAnimal.breed}</p>
-          <p>Age: {currentAnimal.age_months} Months</p>
-          <p>Price: ${currentAnimal.price_per_unit}</p>
+          <p>Age: {age} Months</p>
+          <p>Price: ${price}</p>
 
           <div className="detail-actions">
             <button className="btn-add-cart">Add to Cart</button>
@@ -53,8 +57,7 @@ const AnimalDetail = () => {
           </div>
 
           <p className="animal-description">
-            Healthy, calm and productive {currentAnimal.breed} {currentAnimal.type} available for sale. 
-            Vaccinated and well-cared for. Contact for more information.
+            {currentAnimal.description || `Healthy, calm and productive ${currentAnimal.breed} ${type} available for sale. Vaccinated and well-cared for. Contact for more information.`}
           </p>
 
           {isFarmer ? (
