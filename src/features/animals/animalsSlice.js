@@ -110,8 +110,17 @@ const animalsSlice = createSlice({
         state.error = action.error.message;
       })
       // Fetch single animal
+      .addCase(fetchAnimalById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(fetchAnimalById.fulfilled, (state, action) => {
+        state.loading = false;
         state.current = action.payload;
+      })
+      .addCase(fetchAnimalById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       })
       // Create animal
       .addCase(createAnimal.fulfilled, (state, action) => {
