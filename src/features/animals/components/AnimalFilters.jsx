@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilters, clearFilters, fetchAnimals } from '../animalsSlice';
-import './AnimalFilters.css';
 
 const AnimalFilters = () => {
   const dispatch = useDispatch();

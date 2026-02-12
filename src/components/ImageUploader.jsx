@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import './ImageUploader.css';
 
 const ImageUploader = ({ images, setImages }) => {
   const fileInputRef = useRef(null);

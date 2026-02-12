@@ -11,7 +11,10 @@ function Checkout() {
   const [county, setCounty] = useState('')
   const [success, setSuccess] = useState(false)
 
-  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  const total = cartItems.reduce((sum, item) => {
+    const price = item.price_per_unit || item.price;
+    return sum + price * item.quantity;
+  }, 0)
 
   const handlePay = (e) => {
     e.preventDefault()
@@ -53,40 +56,44 @@ function Checkout() {
           Checkout
         </h1>
         <div className="bg-white p-6 sm:p-8 rounded-2xl shadow border border-gray-200 mb-10">
-          <h2 className="text-2xl font-semibold mb-6">Order Summary</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-gray-900">Order Summary</h2>
 
           {cartItems.length === 0 ? (
             <p className="text-center text-gray-600">Your cart is empty</p>
           ) : (
             <div className="space-y-4 mb-8">
-              {cartItems.map((item) => (
+              {cartItems.map((item) => {
+                const imageUrl = item.images?.[0] || item.image_url || item.image;
+                const name = item.title || item.name;
+                const price = item.price_per_unit || item.price;
+                return (
                 <div key={item.id} className="flex justify-between items-center border-b pb-4">
                   <div className="flex items-center">
                     <img
-                      src={item.image || 'https://via.placeholder.com/64x64?text=Animal'}
-                      alt={item.name}
+                      src={imageUrl || 'https://via.placeholder.com/64x64?text=Animal'}
+                      alt={name}
                       className="w-16 h-16 object-cover rounded mr-4"
                     />
                     <div>
-                      <p className="font-medium">{item.name} ({item.breed})</p>
+                      <p className="font-medium text-gray-900">{name} ({item.breed})</p>
                       <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
                     </div>
                   </div>
-                  <p className="font-semibold">
-                    KES {(item.price * item.quantity).toLocaleString()}
+                  <p className="font-semibold text-gray-900">
+                    KES {(price * item.quantity).toLocaleString()}
                   </p>
                 </div>
-              ))}
+              )})}
             </div>
           )}
 
           <div className="flex justify-between text-xl font-bold">
-            <span>Total</span>
+            <span className="text-gray-900">Total</span>
             <span className="text-green-700">KES {total.toLocaleString()}</span>
           </div>
         </div>
         <div className="bg-white p-6 sm:p-8 rounded-2xl shadow border border-gray-200">
-          <h2 className="text-2xl font-semibold mb-6">Delivery Details</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-gray-900">Delivery Details</h2>
 
           <form onSubmit={handlePay} className="space-y-6">
             <div>

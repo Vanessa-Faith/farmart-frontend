@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAnimalById, updateAnimal, deleteAnimal } from '../features/animals/animalsSlice';
 import ImageUploader from '../components/ImageUploader';
-import './AnimalForm.css';
 
 const EditAnimal = () => {
   const { id } = useParams();

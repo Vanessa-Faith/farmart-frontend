@@ -5,11 +5,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'farm-dark': '#0a1f0d',
+        'farm-green': '#2e7d32',
+        'farm-green-dark': '#1b5e20',
+        'farm-green-light': '#66bb6a',
+        'farm-green-lighter': '#81c784',
+        'farm-bg': '#1a2f1e',
+      },
+    },
   },
   plugins: [],
-  corePlugins: {
-    preflight: false, // Don't reset existing CSS
-  },
 }
 

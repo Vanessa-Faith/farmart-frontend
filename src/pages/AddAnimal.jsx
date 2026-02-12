@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createAnimal } from '../features/animals/animalsSlice';
 import ImageUploader from '../components/ImageUploader';
-import './AnimalForm.css';
 
 const AddAnimal = () => {
   const navigate = useNavigate();
