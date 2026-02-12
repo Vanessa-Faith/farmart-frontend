@@ -1,51 +1,33 @@
 import React from 'react';
+import './About.css';
 
+// About page component with video background and app info
 const About = () => {
   return (
     <div className="about-page">
-      <div className="about-hero">
-        <h1>About FarmArt</h1>
-        <p>Connecting farmers and buyers for quality livestock trading</p>
-      </div>
-
-      <div className="about-content">
-        <section className="about-section">
-          <h2>Our Mission</h2>
-          <p>FarmArt is dedicated to revolutionizing livestock trading by providing a transparent, secure, and efficient platform that connects farmers directly with buyers across Kenya.</p>
-        </section>
-
-        <section className="about-section">
-          <h2>What We Do</h2>
-          <div className="features-grid">
-            <div className="feature-card">
-              <h3>🐄 Quality Livestock</h3>
-              <p>Browse verified farm animals from trusted farmers</p>
-            </div>
-            <div className="feature-card">
-              <h3>🔒 Secure Trading</h3>
-              <p>Safe and transparent transactions for all parties</p>
-            </div>
-            <div className="feature-card">
-              <h3>📱 Easy Access</h3>
-              <p>Simple platform accessible from anywhere</p>
-            </div>
-            <div className="feature-card">
-              <h3>🤝 Direct Connection</h3>
-              <p>Connect farmers and buyers without middlemen</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="about-section">
-          <h2>Why Choose FarmArt?</h2>
-          <ul>
-            <li>Verified farmers and quality livestock</li>
-            <li>Transparent pricing and information</li>
-            <li>Secure payment processing</li>
-            <li>Nationwide delivery options</li>
-            <li>Dedicated customer support</li>
-          </ul>
-        </section>
+      {/* Video background */}
+      <video className="about-video-bg" autoPlay loop muted playsInline poster="https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=400">
+        <source src="https://www.pexels.com/download/video/31524919/" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      {/* Overlay content */}
+      <div className="about-overlay">
+        <h1 className="about-title">About FarMart</h1>
+        <p className="about-desc">
+          FarMart helps farmers reach buyers directly, with transparent pricing and safer transactions.
+        </p>
+        <div className="about-section">
+          <h2>For Farmers</h2>
+          <p>
+            Farmers can list their livestock, manage orders, and connect with buyers without middlemen. The platform offers easy tools for uploading animal details, tracking sales, and receiving payments securely.
+          </p>
+        </div>
+        <div className="about-section">
+          <h2>For Buyers</h2>
+          <p>
+            Buyers can browse available animals, filter by type and breed, and purchase directly from trusted farmers. Transparent pricing and verified sellers ensure a safe and fair marketplace experience.
+          </p>
+        </div>
       </div>
     </div>
   );

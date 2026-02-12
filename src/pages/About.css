@@ -1,0 +1,52 @@
+/* About page styles */
+.about-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.about-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.about-overlay {
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 3rem 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  border-radius: 1rem;
+  top: 10vh;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.about-desc {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.about-section {
+  margin-bottom: 1.5rem;
+}
+
+.about-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.about-section p {
+  font-size: 1rem;
+}
