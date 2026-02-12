@@ -6,7 +6,7 @@ export const loginUser = createAsyncThunk('auth/login', async (credentials, thun
     const response = await api.post('/auth/login', credentials);
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Login failed');
+    return thunkAPI.rejectWithValue(error.response?.data?.error || error.response?.data?.message || error.message || 'Login failed');
   }
 });
 
@@ -15,7 +15,7 @@ export const registerUser = createAsyncThunk('auth/register', async (payload, th
     const response = await api.post('/auth/register', payload);
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Registration failed');
+    return thunkAPI.rejectWithValue(error.response?.data?.error || error.response?.data?.message || error.message || 'Registration failed');
   }
 });
 

@@ -28,10 +28,22 @@ const AnimalDetail = () => {
 
   useEffect(() => {
     const mockAnimal = mockAnimals.find(a => a.id === parseInt(id));
-    if (mockAnimal) setAnimal(mockAnimal);
     dispatch(fetchAnimalById(id)).then((result) => {
-      if (result.payload) setAnimal(result.payload);
-    }).catch(() => {});
+      if (result.payload) {
+        const apiAnimal = {
+          ...result.payload,
+          images: result.payload.images || (result.payload.image_url ? [result.payload.image_url] : [result.payload.image]),
+          type: result.payload.type || result.payload.animal_type,
+          age_months: result.payload.age_months || result.payload.age,
+          price_per_unit: result.payload.price_per_unit || result.payload.price
+        };
+        setAnimal(apiAnimal);
+      } else if (mockAnimal) {
+        setAnimal(mockAnimal);
+      }
+    }).catch(() => {
+      if (mockAnimal) setAnimal(mockAnimal);
+    });
     return () => dispatch(clearCurrentAnimal());
   }, [dispatch, id]);
 
@@ -53,7 +65,14 @@ const AnimalDetail = () => {
 
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 bg-farm-bg p-10 rounded-xl">
         <div className="h-[500px] rounded-xl overflow-hidden bg-farm-dark">
-          <img src={animal.images?.[0] || 'https://via.placeholder.com/400x300'} alt={animal.title} className="w-full h-full object-cover" />
+          <img 
+            src={animal.images?.[0] || animal.image || 'https://via.placeholder.com/400x300?text=Animal+Image'} 
+            alt={animal.title} 
+            className="w-full h-full object-cover" 
+            onError={(e) => {
+              e.target.src = 'https://via.placeholder.com/400x300?text=Animal+Image';
+            }}
+          />
         </div>
 
         <div>
