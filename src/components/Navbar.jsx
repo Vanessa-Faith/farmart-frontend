@@ -46,11 +46,11 @@ export default function Navbar() {
       <nav className="navbar__links" aria-label="Primary">
         <Link to="/">Home</Link>
         <Link to="/animals">Animals</Link>
-        <a href="#about" onClick={handleScrollToSection('about')}>About</a>
-        <a href="#contact" onClick={handleScrollToSection('contact')}>Contact Us</a>
-        <a href="#services" onClick={handleScrollToSection('services')}>Services</a>
+        <Link to="/about">About</Link>
+        <Link to="/contact-us">Contact Us</Link>
+        <Link to="/services">Services</Link>
         {token && user?.role === 'farmer' && (
-          <Link to="/farmer/dashboard">Dashboard</Link>
+          <Link to="/farmer/dashboard">Farmer Dashboard</Link>
         )}
       </nav>
 

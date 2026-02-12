@@ -1,7 +1,7 @@
 import React from 'react';
 import './About.css';
 
-// About page component with video background and app info
+
 const About = () => {
   return (
     <div className="about-page">
@@ -11,23 +11,24 @@ const About = () => {
         Your browser does not support the video tag.
       </video>
       {/* Overlay content */}
-      <div className="about-overlay">
-        <h1 className="about-title">About FarMart</h1>
-        <p className="about-desc">
-          FarMart helps farmers reach buyers directly, with transparent pricing and safer transactions.
+      <div className="about-overlay about-fullscreen">
+        <h1 className="about-title" style={{ marginTop: '2rem', color: '#fff', fontWeight: 'bold', fontSize: '2.8rem', textAlign: 'center', letterSpacing: '1px' }}>About</h1>
+        <h2 style={{ color: '#fff', fontWeight: 'bold', fontSize: '2.2rem', textAlign: 'center', margin: '1.5rem 0 0.5rem' }}>Our Story</h2>
+        <p style={{ color: '#fff', fontSize: '1.15rem', textAlign: 'center', maxWidth: 900, margin: '0 auto 1.5rem', lineHeight: 1.6 }}>
+          Farmers have always relied on trust, community, and hard work to raise their animals. Yet, despite all their effort, many are forced to depend on middlemen who take a large share of the profits. This leaves farmers earning less while buyers pay more.<br />
+          Farmart was created to change that. We built a platform that connects farmers directly to buyers, removing unnecessary intermediaries and restoring fairness to the market.<br />
+          By giving farmers control over how they sell and buyers confidence in what they purchase, Farmart creates a transparent, trusted marketplace for farm animals.
         </p>
-        <div className="about-section">
-          <h2>For Farmers</h2>
-          <p>
-            Farmers can list their livestock, manage orders, and connect with buyers without middlemen. The platform offers easy tools for uploading animal details, tracking sales, and receiving payments securely.
-          </p>
-        </div>
-        <div className="about-section">
-          <h2>For Buyers</h2>
-          <p>
-            Buyers can browse available animals, filter by type and breed, and purchase directly from trusted farmers. Transparent pricing and verified sellers ensure a safe and fair marketplace experience.
-          </p>
-        </div>
+
+        <h2 style={{ color: '#fff', fontWeight: 'bold', fontSize: '2rem', textAlign: 'center', margin: '2rem 0 0.5rem' }}>🎯 Our Mission</h2>
+        <p style={{ color: '#fff', fontSize: '1.15rem', textAlign: 'center', maxWidth: 800, margin: '0 auto 1.5rem', lineHeight: 1.6 }}>
+          To empower farmers by providing a direct, fair, and transparent digital marketplace where they can sell their farm animals at the right value, while enabling buyers to access quality livestock with confidence.
+        </p>
+
+        <h2 style={{ color: '#fff', fontWeight: 'bold', fontSize: '2rem', textAlign: 'center', margin: '2rem 0 0.5rem' }}>🌍 Our Vision</h2>
+        <p style={{ color: '#fff', fontSize: '1.15rem', textAlign: 'center', maxWidth: 800, margin: '0 auto 1.5rem', lineHeight: 1.6 }}>
+          To build a future where farmers thrive, middlemen no longer exploit the supply chain, and technology bridges the gap between producers and buyers—creating sustainable livelihoods and stronger agricultural communities.
+        </p>
       </div>
     </div>
   );
