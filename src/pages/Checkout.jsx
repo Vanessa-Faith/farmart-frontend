@@ -112,19 +112,19 @@ function Checkout() {
             </div>
 
             <div>
-              <label htmlFor="county" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="county" className="block text-sm font-medium text-black mb-1">
                 County *
               </label>
               <select
                 id="county"
                 value={county}
                 onChange={(e) => setCounty(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-black"
                 required
               >
-                <option value="">Select your county</option>
+                <option value="" className="text-black">Select your county</option>
                 {kenyanCounties.map((c) => (
-                  <option key={c} value={c}>
+                  <option key={c} value={c} className="text-black">
                     {c}
                   </option>
                 ))}
