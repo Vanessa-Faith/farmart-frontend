@@ -28,19 +28,23 @@ const AnimalDetail = () => {
   const [animal, setAnimal] = useState(null);
 
   useEffect(() => {
-    // Always start with mock animal for image consistency
     const mockAnimal = mockAnimals.find(a => a.id === parseInt(id));
-    setAnimal(mockAnimal);
     dispatch(fetchAnimalById(id)).then((result) => {
       if (result.payload) {
-        // If fetched animal has no images, use mock images
-        if (!result.payload.images || result.payload.images.length === 0) {
-          setAnimal({ ...result.payload, images: mockAnimal?.images || [] });
-        } else {
-          setAnimal(result.payload);
-        }
+        const apiAnimal = {
+          ...result.payload,
+          images: result.payload.images || (result.payload.image_url ? [result.payload.image_url] : [result.payload.image]),
+          type: result.payload.type || result.payload.animal_type,
+          age_months: result.payload.age_months || result.payload.age,
+          price_per_unit: result.payload.price_per_unit || result.payload.price
+        };
+        setAnimal(apiAnimal);
+      } else if (mockAnimal) {
+        setAnimal(mockAnimal);
       }
-    }).catch(() => {});
+    }).catch(() => {
+      if (mockAnimal) setAnimal(mockAnimal);
+    });
     return () => dispatch(clearCurrentAnimal());
   }, [dispatch, id]);
 

@@ -1,23 +1,15 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
-    <main id="home" className="home">
-      <section className="hero" aria-labelledby="hero-title">
-        <div className="hero__content">
-          <p className="hero__eyebrow">FarMart</p>
-          <h1 id="hero-title">Sell Direct. Earn More. Just Fair Trade.</h1>
-          <p className="hero__subtitle">
-            Connecting farmers directly to buyers and distributors, eliminating
-            middle men — transparently, securely, and profitably.
-          </p>
-          <div className="hero__actions">
-            <Link to="/auth" className="btn btn--primary">Get started</Link>
-            <Link to="/animals" className="btn btn--secondary">Browse animals</Link>
-          </div>
-        </div>
+    <div className="min-h-screen bg-farm-dark">
+      <section className="bg-gradient-to-r from-black/60 to-black/60 bg-cover bg-center py-32 px-10 text-center text-white" style={{backgroundImage: "url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=1200')"}}>
+        <h1 className="text-6xl font-bold mb-6">Welcome to FarMart</h1>
+        <p className="text-xl max-w-3xl mx-auto mb-8">Connect directly with farmers and buy quality livestock at fair prices</p>
+        <Link to="/animals" className="inline-block px-8 py-4 bg-farm-green text-white rounded-lg text-lg font-semibold hover:bg-farm-green-dark transition">
+          Browse Animals
+        </Link>
       </section>
-
-    </main>
-  )
+    </div>
+  );
 }
