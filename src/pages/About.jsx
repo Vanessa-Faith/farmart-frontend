@@ -1,51 +1,34 @@
 import React from 'react';
+import './About.css';
+
 
 const About = () => {
   return (
     <div className="about-page">
-      <div className="about-hero">
-        <h1>About FarmArt</h1>
-        <p>Connecting farmers and buyers for quality livestock trading</p>
-      </div>
+      {/* Video background */}
+      <video className="about-video-bg" autoPlay loop muted playsInline poster="https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=400">
+        <source src="https://www.pexels.com/download/video/31524919/" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      {/* Overlay content */}
+      <div className="about-overlay about-fullscreen">
+        <h1 className="about-title" style={{ marginTop: '2rem', color: '#fff', fontWeight: 'bold', fontSize: '2.8rem', textAlign: 'center', letterSpacing: '1px' }}>About</h1>
+        <h2 style={{ color: '#fff', fontWeight: 'bold', fontSize: '2.2rem', textAlign: 'center', margin: '1.5rem 0 0.5rem' }}>Our Story</h2>
+        <p style={{ color: '#fff', fontSize: '1.15rem', textAlign: 'center', maxWidth: 900, margin: '0 auto 1.5rem', lineHeight: 1.6 }}>
+          Farmers have always relied on trust, community, and hard work to raise their animals. Yet, despite all their effort, many are forced to depend on middlemen who take a large share of the profits. This leaves farmers earning less while buyers pay more.<br />
+          Farmart was created to change that. We built a platform that connects farmers directly to buyers, removing unnecessary intermediaries and restoring fairness to the market.<br />
+          By giving farmers control over how they sell and buyers confidence in what they purchase, Farmart creates a transparent, trusted marketplace for farm animals.
+        </p>
 
-      <div className="about-content">
-        <section className="about-section">
-          <h2>Our Mission</h2>
-          <p>FarmArt is dedicated to revolutionizing livestock trading by providing a transparent, secure, and efficient platform that connects farmers directly with buyers across Kenya.</p>
-        </section>
+        <h2 style={{ color: '#fff', fontWeight: 'bold', fontSize: '2rem', textAlign: 'center', margin: '2rem 0 0.5rem' }}>🎯 Our Mission</h2>
+        <p style={{ color: '#fff', fontSize: '1.15rem', textAlign: 'center', maxWidth: 800, margin: '0 auto 1.5rem', lineHeight: 1.6 }}>
+          To empower farmers by providing a direct, fair, and transparent digital marketplace where they can sell their farm animals at the right value, while enabling buyers to access quality livestock with confidence.
+        </p>
 
-        <section className="about-section">
-          <h2>What We Do</h2>
-          <div className="features-grid">
-            <div className="feature-card">
-              <h3>🐄 Quality Livestock</h3>
-              <p>Browse verified farm animals from trusted farmers</p>
-            </div>
-            <div className="feature-card">
-              <h3>🔒 Secure Trading</h3>
-              <p>Safe and transparent transactions for all parties</p>
-            </div>
-            <div className="feature-card">
-              <h3>📱 Easy Access</h3>
-              <p>Simple platform accessible from anywhere</p>
-            </div>
-            <div className="feature-card">
-              <h3>🤝 Direct Connection</h3>
-              <p>Connect farmers and buyers without middlemen</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="about-section">
-          <h2>Why Choose FarmArt?</h2>
-          <ul>
-            <li>Verified farmers and quality livestock</li>
-            <li>Transparent pricing and information</li>
-            <li>Secure payment processing</li>
-            <li>Nationwide delivery options</li>
-            <li>Dedicated customer support</li>
-          </ul>
-        </section>
+        <h2 style={{ color: '#fff', fontWeight: 'bold', fontSize: '2rem', textAlign: 'center', margin: '2rem 0 0.5rem' }}>🌍 Our Vision</h2>
+        <p style={{ color: '#fff', fontSize: '1.15rem', textAlign: 'center', maxWidth: 800, margin: '0 auto 1.5rem', lineHeight: 1.6 }}>
+          To build a future where farmers thrive, middlemen no longer exploit the supply chain, and technology bridges the gap between producers and buyers—creating sustainable livelihoods and stronger agricultural communities.
+        </p>
       </div>
     </div>
   );

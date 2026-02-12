@@ -18,33 +18,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="section section--dark">
-        <div className="section__inner">
-          <h2>About us</h2>
-          <p>
-            FarMart helps farmers reach buyers directly, with transparent pricing
-            and safer transactions.
-          </p>
-        </div>
-      </section>
-
-      <section id="contact" className="section">
-        <div className="section__inner">
-          <h2>Contact us</h2>
-          <p>Email: support@farmart.example</p>
-        </div>
-      </section>
-
-      <section id="services" className="section section--dark">
-        <div className="section__inner">
-          <h2>Services</h2>
-          <ul>
-            <li>Verified listings</li>
-            <li>Secure payments</li>
-            <li>Order management</li>
-          </ul>
-        </div>
-      </section>
     </main>
   )
 }

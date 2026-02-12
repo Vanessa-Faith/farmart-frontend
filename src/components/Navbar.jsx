@@ -1,18 +1,38 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../features/auth/authSlice';
 
 export default function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { token, user } = useSelector((state) => state.auth);
-
   const items = useSelector((state) => state.cart.items);
   const cartCount = items.reduce((total, item) => total + item.quantity, 0);
 
   const handleLogout = () => {
     dispatch(logout());
     navigate('/');
+  };
+
+  // Helper to scroll to section on Home page
+  const handleScrollToSection = (sectionId) => (e) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/', { replace: false });
+      // Wait for navigation, then scroll
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   };
 
   return (
@@ -26,8 +46,11 @@ export default function Navbar() {
       <nav className="navbar__links" aria-label="Primary">
         <Link to="/">Home</Link>
         <Link to="/animals">Animals</Link>
+        <Link to="/about">About</Link>
+        <Link to="/contact-us">Contact Us</Link>
+        <Link to="/services">Services</Link>
         {token && user?.role === 'farmer' && (
-          <Link to="/farmer/dashboard">Dashboard</Link>
+          <Link to="/farmer/dashboard">Farmer Dashboard</Link>
         )}
       </nav>
 

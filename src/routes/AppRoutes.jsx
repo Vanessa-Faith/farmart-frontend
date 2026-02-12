@@ -12,6 +12,9 @@ import OrderHistory from '../pages/OrderHistory';
 import FarmerDashboard from '../pages/FarmerDashboard';
 import FarmerOrders from '../pages/FarmerOrders';
 import PrivateRoute from '../components/PrivateRoute';
+import About from '../pages/About';
+import Services from '../pages/Services';
+import ContactUs from '../pages/ContactUs';
 
 export default function AppRoutes() {
   return (
@@ -20,6 +23,9 @@ export default function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/animals" element={<AnimalsList />} />
       <Route path="/animals/:id" element={<AnimalDetail />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/services" element={<Services />} />
+      <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
