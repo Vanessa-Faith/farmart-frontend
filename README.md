@@ -176,3 +176,4 @@ useEffect(() => { dispatch(fetchItems()) }, []);
 
 **Backend Repo**: [farmart-backend](https://github.com/Vanessa-Faith/farmart-backend)  
 **Figma Wireframes**: [Link from team lead]
+**Videos**: we would like to acknowledge https://www.pexels.com/download/video/31819948/ 
