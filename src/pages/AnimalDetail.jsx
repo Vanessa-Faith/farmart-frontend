@@ -62,7 +62,14 @@ const AnimalDetail = () => {
 
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 bg-farm-bg p-10 rounded-xl">
         <div className="h-[500px] rounded-xl overflow-hidden bg-farm-dark">
-          <img src={animal.images?.[0] || 'https://via.placeholder.com/400x300'} alt={animal.title} className="w-full h-full object-cover" />
+          <img 
+            src={animal.images?.[0] || animal.image || 'https://via.placeholder.com/400x300?text=Animal+Image'} 
+            alt={animal.title} 
+            className="w-full h-full object-cover" 
+            onError={(e) => {
+              e.target.src = 'https://via.placeholder.com/400x300?text=Animal+Image';
+            }}
+          />
         </div>
 
         <div>

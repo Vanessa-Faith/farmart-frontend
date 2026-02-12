@@ -36,7 +36,16 @@ const AnimalsList = () => {
     dispatch(fetchAnimals({}));
   }, [dispatch]);
 
-  const displayList = list.length > 0 ? list : mockAnimals;
+  const displayList = useMemo(() => {
+    if (list.length === 0) return mockAnimals;
+    return list.map(animal => ({
+      ...animal,
+      images: animal.images || (animal.image_url ? [animal.image_url] : [animal.image]),
+      type: animal.type || animal.animal_type,
+      age_months: animal.age_months || animal.age,
+      price_per_unit: animal.price_per_unit || animal.price
+    }));
+  }, [list]);
   const animalTypes = useMemo(() => [...new Set(displayList.map(a => a.type).filter(Boolean))], [displayList]);
   const breeds = useMemo(() => {
     const filtered = filters.type ? displayList.filter(a => a.type === filters.type) : displayList;
