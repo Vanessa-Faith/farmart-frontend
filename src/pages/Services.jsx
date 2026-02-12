@@ -29,17 +29,17 @@ export default function Services() {
         <h3 style={{ color: '#2e7d32', fontWeight: 'bold', fontSize: '1.3rem', textAlign: 'center', marginBottom: '1rem' }}>💬 <span style={{ color: '#43a047' }}>TESTIMONIALS</span> - what our users say <span style={{ color: '#ffd700' }}>★★★★★</span></h3>
         <div style={{ color: '#fff', fontSize: '1.1rem', marginBottom: '1.2rem', textAlign: 'center' }}>
           “Farmart helped me sell my cattle directly without losing money to brokers. I now reach buyers faster and earn more.”<br />
-          <span style={{ fontWeight: 'bold' }}>— John M., Livestock Farmer</span><br />
+          <span style={{ fontWeight: 'bold' }}>— Raniel M., Livestock Farmer</span><br />
           <span style={{ color: '#ffd700' }}>★★★★★</span>
         </div>
         <div style={{ color: '#fff', fontSize: '1.1rem', marginBottom: '1.2rem', textAlign: 'center' }}>
           “I love how easy it is to search for specific breeds. The process feels transparent and trustworthy.”<br />
-          <span style={{ fontWeight: 'bold' }}>— Sarah K., Buyer</span><br />
+          <span style={{ fontWeight: 'bold' }}>— Linda J., Buyer</span><br />
           <span style={{ color: '#ffd700' }}>★★★★★</span>
         </div>
         <div style={{ color: '#fff', fontSize: '1.1rem', textAlign: 'center' }}>
           “The platform is simple, reliable, and fair to both farmers and buyers.”<br />
-          <span style={{ fontWeight: 'bold' }}>— David O., Farmer</span><br />
+          <span style={{ fontWeight: 'bold' }}>— Jonah T., Farmer</span><br />
           <span style={{ color: '#ffd700' }}>★★★★★</span>
         </div>
       </div>
