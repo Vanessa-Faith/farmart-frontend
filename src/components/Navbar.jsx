@@ -14,26 +14,7 @@ export default function Navbar() {
     dispatch(logout());
     navigate('/');
   };
-
-  // Helper to scroll to section on Home page
-  const handleScrollToSection = (sectionId) => (e) => {
-    e.preventDefault();
-    if (location.pathname !== '/') {
-      navigate('/', { replace: false });
-      // Wait for navigation, then scroll
-      setTimeout(() => {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      const el = document.getElementById(sectionId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
+  
 
   return (
     <header className="navbar">
@@ -49,7 +30,7 @@ export default function Navbar() {
         <Link to="/about">About</Link>
         <Link to="/contact-us">Contact Us</Link>
         <Link to="/services">Services</Link>
-        {token && user?.role === 'farmer' && (
+        {user?.role === 'farmer' && (
           <Link to="/farmer/dashboard">Farmer Dashboard</Link>
         )}
       </nav>
