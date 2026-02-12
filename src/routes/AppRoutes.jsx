@@ -1,5 +1,4 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import Home from '../pages/Home';
 import AnimalsList from '../pages/AnimalsList';
 import AnimalDetail from '../pages/AnimalDetail';
@@ -15,8 +14,6 @@ import FarmerOrders from '../pages/FarmerOrders';
 import PrivateRoute from '../components/PrivateRoute';
 
 export default function AppRoutes() {
-  const { token } = useSelector((state) => state.auth);
-
   return (
     <Routes>
       {/* Public routes */}
