@@ -89,7 +89,7 @@ export default function FarmerOrders() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {orders.map((order) => (
             <OrderCard key={order.id} order={order}>
-              <ConfirmRejectButtons orderId={order.id} status={order.status} />
+              <ConfirmRejectButtons orderId={order.id} actions={order.actions} />
             </OrderCard>
           ))}
         </div>

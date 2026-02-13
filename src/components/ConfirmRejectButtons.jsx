@@ -34,11 +34,32 @@ const rejectButtonStyle = {
   boxShadow: "0 1px 3px 0 rgba(239, 68, 68, 0.3)"
 };
 
-export default function ConfirmRejectButtons({ orderId, status }) {
+export default function ConfirmRejectButtons({ orderId, actions }) {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.orders);
 
-  if (status !== "paid" || !orderId) return null;
+  // Debug logging to understand what data we're receiving
+  console.log('ConfirmRejectButtons debug:', {
+    orderId,
+    actions,
+    canConfirm: actions?.can_confirm,
+    canReject: actions?.can_reject
+  });
+
+  // Check if buttons should be shown based on actions from API
+  const canShowConfirm = actions?.can_confirm === true;
+  const canShowReject = actions?.can_reject === true;
+  const canShowButtons = canShowConfirm || canShowReject;
+
+  if (!canShowButtons) {
+    // Show debug info when buttons are hidden
+    console.log('Buttons hidden because:', {
+      canConfirm: actions?.can_confirm,
+      canReject: actions?.can_reject,
+      reason: !canShowConfirm && !canShowReject ? 'No actions available' : 'Missing orderId'
+    });
+    return null;
+  }
 
   return (
     <div style={containerStyle}>
